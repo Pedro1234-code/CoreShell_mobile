@@ -32,29 +32,6 @@ namespace factoryos_10x_shell.Services.Managers
         private readonly Size _logoSize;
         private DispatcherQueue _dispatcherQueue;
 
-        public NotificationManager()
-        {
-            if (!ApiInformation.IsTypePresent("Windows.UI.Notifications.Management.UserNotificationListener"))
-            {
-                NotificationAccessStatus = UserNotificationListenerAccessStatus.Unspecified;
-                return;
-            }
-
-            _logoSize = new Size(64, 64);
-            m_appHelper = App.ServiceProvider.GetRequiredService<IAppHelper>();
-            _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
-            UserNotifications = new ObservableCollection<UserNotificationModel>();
-
-            NotificationListener = UserNotificationListener.Current;
-            if (Task.Run(async () => await InitializeEventAsync()).Result)
-            {
-                NotificationListener.NotificationChanged += NotificationManager_NotificationChanged;
-            }
-            else
-            {
-                Task.Run(RequestNotificationAccess).Wait();
-            }
-        }
 
         private async Task<bool> InitializeEventAsync()
         {

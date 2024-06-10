@@ -64,8 +64,6 @@ namespace factoryos_10x_shell.Library.ViewModels
 
             _logoSize = new Size(64, 64);
             NotificationModels = new ObservableCollection<UserNotificationModel>();
-            m_notifManager.NotificationChanged += NotificationManager_NotificationChanged;
-            Task.Run(UpdateNotifications).Wait();
 
             m_netService.InternetStatusChanged += NetworkService_InternetStatusChanged;
             UpdateNetworkStatus();
@@ -80,7 +78,7 @@ namespace factoryos_10x_shell.Library.ViewModels
         [RelayCommand]
         private void LockScreenClicked() { m_dialogService.OpenLockDialog(); }
         [RelayCommand]
-        private async void SettingsClicked() { await Launcher.LaunchUriAsync(new Uri("ms-settings:")); }
+        private async Task SettingsClicked() { await Launcher.LaunchUriAsync(new Uri("ms-settings:")); }
         [RelayCommand]
         private void OSKClicked() { /* todo: IMPLEMENT OPENING OSK */ }
 
@@ -108,39 +106,6 @@ namespace factoryos_10x_shell.Library.ViewModels
         #endregion
 
 
-        #region Notification menu
-        private void NotificationManager_NotificationChanged(object sender, UserNotificationChangedEventArgs e)
-        {
-            UpdateNotifications().Wait();
-        }
-        private async Task UpdateNotifications()
-        {
-            IReadOnlyList<UserNotification> notifsToast = await m_notifManager.NotificationListener.GetNotificationsAsync(NotificationKinds.Toast);
-            IReadOnlyList<UserNotification> notifsOther = await m_notifManager.NotificationListener.GetNotificationsAsync(NotificationKinds.Unknown);
-
-            m_dispatcherService.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
-            {
-                NotifWindowVisibility = notifsToast.Count > 0 || notifsOther.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-                NotifCount = notifsToast.Count;
-
-                if (notifCount == 0)
-                {
-                    NotificationModels.Clear();
-                }
-            });
-        }
-        [ObservableProperty]
-        private int notifCount;
-        [RelayCommand]
-        private void ClearNotifications()
-        {
-            m_notifManager.ClearUserNotifications();
-        }
-        [ObservableProperty]
-        private Visibility notifWindowVisibility;
-
-        public ObservableCollection<UserNotificationModel> Notifications => m_notifManager.UserNotifications;
-        #endregion
 
 
         #region Battery status

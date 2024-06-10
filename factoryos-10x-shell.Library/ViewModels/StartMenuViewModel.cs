@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.System;
+using Windows.UI.Input.Preview.Injection;
 using Windows.UI.Xaml.Controls;
 
 namespace factoryos_10x_shell.Library.ViewModels
@@ -55,5 +57,35 @@ namespace factoryos_10x_shell.Library.ViewModels
                 AppsListGridHeight = 310;
             }
         }
+
+        [RelayCommand]
+        public async Task TextBoxSearchClickedAsync()
+        {
+            InputInjector inputInjector = InputInjector.TryCreate();
+
+            // Create an instance for the 'Tab' key
+            InjectedInputKeyboardInfo sKey = new InjectedInputKeyboardInfo();
+            sKey.VirtualKey = (ushort)(VirtualKey.S);
+            sKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Create an instance for the 'Windows' key
+            InjectedInputKeyboardInfo winKey = new InjectedInputKeyboardInfo();
+            winKey.VirtualKey = (ushort)(VirtualKey.LeftWindows);
+            winKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Inject the 'Windows' key down
+            inputInjector.InjectKeyboardInput(new[] { winKey });
+
+            // Inject the 'Tab' key down and up
+            inputInjector.InjectKeyboardInput(new[] { sKey });
+            sKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { sKey });
+
+            // Inject the 'Windows' key up
+            winKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { winKey });
+
+        }
+
     }
 }

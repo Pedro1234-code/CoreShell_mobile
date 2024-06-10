@@ -4,7 +4,9 @@ using factoryos_10x_shell.Library.Models.Hardware;
 using factoryos_10x_shell.Library.Services.Environment;
 using factoryos_10x_shell.Library.Services.Hardware;
 using factoryos_10x_shell.Library.Services.Managers;
+using Windows.UI.Xaml.Controls;
 using System;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +14,14 @@ using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.Input.Preview.Injection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using CommunityToolkit.Mvvm.Input;
+using Windows.ApplicationModel.AppService;
+using Windows.Foundation.Collections;
+
 
 namespace factoryos_10x_shell.Library.ViewModels
 {
@@ -33,7 +39,7 @@ namespace factoryos_10x_shell.Library.ViewModels
         private readonly IActionCenterManagerService m_actionManager;
 
         public Default10xBarViewModel(
-            ITimeService timeService, 
+            ITimeService timeService,
             IDispatcherService dispatcherService,
             IBatteryService powerService,
             INetworkService netService,
@@ -60,14 +66,13 @@ namespace factoryos_10x_shell.Library.ViewModels
             m_netService.InternetStatusChanged += NetworkService_InternetStatusChanged;
             UpdateNetworkStatus();
 
-            m_notifManager.NotificationChanged += NotificationManager_NotificationChanged;
-            Task.Run(UpdateNotifications).Wait();
 
             m_themeService.GlobalThemeChanged += ThemeService_GlobalThemeChanged;
 
             StartColorOpacity = 0;
             StartNormalOpacity = 1;
             m_startManager.StartVisibilityChanged += StartManager_StartVisibilityChanged;
+
         }
 
 
@@ -195,29 +200,12 @@ namespace factoryos_10x_shell.Library.ViewModels
         }
 
 
-        [ObservableProperty]
-        private Visibility notifIndicatorVisibility;
-
-        private void NotificationManager_NotificationChanged(object sender, UserNotificationChangedEventArgs e)
-        {
-            UpdateNotifications().Wait();
-        }
-        private async Task UpdateNotifications()
-        {
-            IReadOnlyList<UserNotification> notifsToast = await m_notifManager.NotificationListener.GetNotificationsAsync(NotificationKinds.Toast);
-            IReadOnlyList<UserNotification> notifsOther = await m_notifManager.NotificationListener.GetNotificationsAsync(NotificationKinds.Unknown);
-
-            m_dispatcherService.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
-            {
-                NotifIndicatorVisibility = notifsToast.Count > 0 || notifsOther.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-            });
-        }
 
 
         public SolidColorBrush ThemedIconBrush => m_themeService.CurrentTheme switch
         {
             ApplicationTheme.Light => new SolidColorBrush(Color.FromArgb(255, 99, 99, 98)),
-            ApplicationTheme.Dark  => new SolidColorBrush(Color.FromArgb(255, 166, 166, 166)),
+            ApplicationTheme.Dark => new SolidColorBrush(Color.FromArgb(255, 166, 166, 166)),
             _ => new SolidColorBrush(Color.FromArgb(255, 166, 166, 166))
         };
 
@@ -257,11 +245,41 @@ namespace factoryos_10x_shell.Library.ViewModels
 
 
         [RelayCommand]
-        private void ActionCenterButtonClicked()
+        private async void ActionCenterButtonClicked()
         {
-            m_actionManager.RequestActionVisibilityChange(!m_actionManager.IsActionCenterOpen);
-            if (m_startManager.IsStartOpen)
-                m_startManager.RequestStartVisibilityChange(false);
+            await Launcher.LaunchUriAsync(new Uri("ms-actioncenter:"));
         }
+
+        [RelayCommand]
+        private async Task TaskViewButtonClicked()
+        {
+            // Create an instance of InputInjector
+            InputInjector inputInjector = InputInjector.TryCreate();
+
+            // Create an instance for the 'Tab' key
+            InjectedInputKeyboardInfo tabKey = new InjectedInputKeyboardInfo();
+            tabKey.VirtualKey = (ushort)(VirtualKey.Tab);
+            tabKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Create an instance for the 'Windows' key
+            InjectedInputKeyboardInfo winKey = new InjectedInputKeyboardInfo();
+            winKey.VirtualKey = (ushort)(VirtualKey.LeftWindows);
+            winKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Inject the 'Windows' key down
+            inputInjector.InjectKeyboardInput(new[] { winKey });
+
+            // Inject the 'Tab' key down and up
+            inputInjector.InjectKeyboardInput(new[] { tabKey });
+            tabKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { tabKey });
+
+            // Inject the 'Windows' key up
+            winKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { winKey });
+
+        }
+
     }
+
 }

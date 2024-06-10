@@ -11,6 +11,8 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 using System.Numerics;
+using System.Runtime.InteropServices;
+
 
 namespace factoryos_10x_shell.Library.ViewModels
 {

@@ -26,8 +26,6 @@ namespace factoryos_10x_shell
         private readonly IDesktopNavigator m_desktopNavigator;
         private readonly IDialogService m_dialogService;
 
-        private readonly DebugMenu m_debugMenu;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -51,7 +49,6 @@ namespace factoryos_10x_shell
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated;
 
-            m_debugMenu = new DebugMenu();
         }
 
         private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)

@@ -16,10 +16,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.System;
+using Windows.UI.Input.Preview.Injection;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using System.Runtime.InteropServices;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows.System.UserProfile;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace factoryos_10x_shell.Views
 {
@@ -38,7 +43,6 @@ namespace factoryos_10x_shell.Views
         public MainDesktop()
         {
             this.InitializeComponent();
-
             DataContext = App.ServiceProvider.GetRequiredService<MainDesktopViewModel>();
 
             m_startManager = App.ServiceProvider.GetRequiredService<IStartManagerService>();
@@ -51,7 +55,6 @@ namespace factoryos_10x_shell.Views
 
             TaskbarFrame.Navigate(typeof(Default10xBar));
             StartMenuFrame.Navigate(typeof(StartMenu));
-            ActionCenterFrame.Navigate(typeof(ActionCenterHome));
 
             InitStartOpen();
             InitStartClose();
@@ -61,7 +64,27 @@ namespace factoryos_10x_shell.Views
 
             App.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Sounds/BootUp.wav"));
             App.MediaPlayer.Play();
+            string wallpaperPath = WallpaperHelper.GetDesktopWallpaper();
+            BitmapImage bitmapImage = new BitmapImage(new Uri(wallpaperPath));
+            BackgroundWallpaper.Source = bitmapImage;
         }
+
+        class WallpaperHelper
+        {
+            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+
+            private const int SPI_GETDESKWALLPAPER = 0x0073;
+
+            public static string GetDesktopWallpaper()
+            {
+                string wallpaper = new string('\0', 256);
+                SystemParametersInfo(SPI_GETDESKWALLPAPER, wallpaper.Length, wallpaper, 0);
+                return wallpaper.Substring(0, wallpaper.IndexOf('\0'));
+            }
+        }
+
+
 
         private void OnPointerPressed(object sender, PointerRoutedEventArgs args)
         {

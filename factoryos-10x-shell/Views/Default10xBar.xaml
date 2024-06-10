@@ -2,15 +2,15 @@
     x:Class="factoryos_10x_shell.Views.Default10xBar"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:factoryos_10x_shell.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:factoryos_10x_shell.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     MaxHeight="50"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
+    mc:Ignorable="d">
 
     <Page.Resources>
-        <LinearGradientBrush x:Key="TopLeftStartCorner" StartPoint="0.654087007045746,1.38681995868683" EndPoint="4.19095993041992,4.92368984222412" MappingMode="RelativeToBoundingBox">
+        <LinearGradientBrush x:Key="TopLeftStartCorner" MappingMode="RelativeToBoundingBox" StartPoint="0.654087007045746,1.38681995868683" EndPoint="4.19095993041992,4.92368984222412">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
                     <GradientStop Color="#03A5F0" />
@@ -18,7 +18,7 @@
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
-        <LinearGradientBrush x:Key="BottomLeftStartCorner" StartPoint="0.376727014780045,5.06757020950317" EndPoint="4.43623018264771,9.12707042694092" MappingMode="RelativeToBoundingBox">
+        <LinearGradientBrush x:Key="BottomLeftStartCorner" MappingMode="RelativeToBoundingBox" StartPoint="0.376727014780045,5.06757020950317" EndPoint="4.43623018264771,9.12707042694092">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
                     <GradientStop Color="#0462B6" />
@@ -26,7 +26,7 @@
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
-        <LinearGradientBrush x:Key="TopRightStartCorner" StartPoint="4.70152997970581,0.700914025306702" EndPoint="10.1199998855591,4.78404998779297" MappingMode="RelativeToBoundingBox">
+        <LinearGradientBrush x:Key="TopRightStartCorner" MappingMode="RelativeToBoundingBox" StartPoint="4.70152997970581,0.700914025306702" EndPoint="10.1199998855591,4.78404998779297">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
                     <GradientStop Color="#00D8FD" />
@@ -34,7 +34,7 @@
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
-        <LinearGradientBrush x:Key="BottomRightStartCorner" StartPoint="4.97241020202637,4.94214010238647" EndPoint="9.93787002563477,9.90760040283203" MappingMode="RelativeToBoundingBox">
+        <LinearGradientBrush x:Key="BottomRightStartCorner" MappingMode="RelativeToBoundingBox" StartPoint="4.97241020202637,4.94214010238647" EndPoint="9.93787002563477,9.90760040283203">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
                     <GradientStop Color="#04A8F3" />
@@ -44,73 +44,217 @@
         </LinearGradientBrush>
     </Page.Resources>
 
-    <Grid x:Name="TaskbarGrid" Background="{ThemeResource TaskbarAcrylicBrush}" Height="50" VerticalAlignment="Bottom">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button HorizontalAlignment="Center" Height="50" Padding="13" Width="50" ToolTipService.ToolTip="Start" x:Name="StartButton" CornerRadius="0" Background="Transparent" Command="{x:Bind ViewModel.StartButtonClickedCommand, Mode=OneWay}">
-                <Button.Content>
-                    <Viewbox>
-                        <Canvas Height="1024" Width="1024" x:Name="StartCanvas">
-                            <Path Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z" Fill="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="NormalTopLeft" Opacity="{x:Bind ViewModel.StartNormalOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.15" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z" Fill="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="NormalBottomLeft" Opacity="{x:Bind ViewModel.StartNormalOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.15" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z" Fill="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="NormalTopRight" Opacity="{x:Bind ViewModel.StartNormalOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.25" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z" Fill="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="NormalBottomRight" Opacity="{x:Bind ViewModel.StartNormalOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.30" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z" Fill="{StaticResource TopLeftStartCorner}" x:Name="ColorTopLeft" Opacity="{x:Bind ViewModel.StartColorOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.15" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z" Fill="{StaticResource BottomLeftStartCorner}" x:Name="ColorBottomLeft" Opacity="{x:Bind ViewModel.StartColorOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.20" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z" Fill="{StaticResource TopRightStartCorner}" x:Name="ColorTopRight" Opacity="{x:Bind ViewModel.StartColorOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.25" />
-                                </Path.OpacityTransition>
-                            </Path>
-                            <Path Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z" Fill="{StaticResource BottomRightStartCorner}" x:Name="ColorBottomRight" Opacity="{x:Bind ViewModel.StartColorOpacity, Mode=OneWay}">
-                                <Path.OpacityTransition>
-                                    <ScalarTransition Duration="0:0:0.30" />
-                                </Path.OpacityTransition>
-                            </Path>
-                        </Canvas>
-                    </Viewbox>
-                </Button.Content>
+    <Grid
+        x:Name="TaskbarGrid"
+        Height="50"
+        VerticalAlignment="Bottom"
+        Background="{ThemeResource TaskbarAcrylicBrush}">
+
+        <Button
+            x:Name="TaskViewButton"
+            Width="75"
+            Height="50"
+            Padding="0"
+            Click="TaskViewButton_Click"
+            Command="{x:Bind Mode=OneWay, Path=ViewModel.TaskViewButtonClickedCommand}"
+            Style="{StaticResource TaskbarButtonStyle}"
+            ToolTipService.ToolTip="Task">
+            <Button.Content>
+                <Image
+                    Width="34"
+                    Height="32"
+                    Source="ms-appx:///taskview.png"
+                    Stretch="Uniform" />
+            </Button.Content>
+        </Button>
+
+
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button
+                x:Name="StartButton"
+                Width="50"
+                Height="50"
+                Padding="13"
+                HorizontalAlignment="Center"
+                Background="Transparent"
+                Command="{x:Bind Mode=OneWay, Path=ViewModel.StartButtonClickedCommand}"
+                CornerRadius="0"
+                ToolTipService.ToolTip="Start">
+                <Viewbox>
+                    <Canvas
+                        x:Name="StartCanvas"
+                        Width="1024"
+                        Height="1024">
+                        <Path
+                            x:Name="NormalTopLeft"
+                            Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z"
+                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.15" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="NormalBottomLeft"
+                            Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z"
+                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.15" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="NormalTopRight"
+                            Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z"
+                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.25" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="NormalBottomRight"
+                            Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z"
+                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.30" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="ColorTopLeft"
+                            Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z"
+                            Fill="{StaticResource TopLeftStartCorner}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.15" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="ColorBottomLeft"
+                            Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z"
+                            Fill="{StaticResource BottomLeftStartCorner}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.20" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="ColorTopRight"
+                            Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z"
+                            Fill="{StaticResource TopRightStartCorner}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.25" />
+                            </Path.OpacityTransition>
+                        </Path>
+                        <Path
+                            x:Name="ColorBottomRight"
+                            Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z"
+                            Fill="{StaticResource BottomRightStartCorner}"
+                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
+                            <Path.OpacityTransition>
+                                <ScalarTransition Duration="0:0:0.30" />
+                            </Path.OpacityTransition>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+
+        </StackPanel>
+        <StackPanel
+            x:Name="RightControls"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="PowerButton"
+                Width="75"
+                Height="50"
+                Padding="0"
+                Click="PowerButton_Click"
+                Style="{StaticResource TaskbarButtonStyle}">
+                <Image Width="26" Height="26">
+                    <Image.Source>
+                        <ThemeResource ResourceKey="PowerButtonImageSource" />
+                    </Image.Source>
+                </Image>
+            </Button>
+
+            <Button
+                x:Name="ActionCenterButton"
+                Width="75"
+                Height="50"
+                Padding="0"
+                Command="{x:Bind Mode=OneWay, Path=ViewModel.ActionCenterButtonClickedCommand}"
+                Style="{StaticResource TaskbarButtonStyle}"
+                ToolTipService.ToolTip="Action Center">
+                <Grid
+                    Width="75"
+                    Height="50"
+                    Padding="0">
+                    <TextBlock
+                        x:Name="ClockText2"
+                        Margin="5,5,10,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        FontWeight="Medium"
+                        Foreground="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.TimeText}" />
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="NotifStatus2"
+                            Margin="0,0,5,7"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="14"
+                            Foreground="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Text="&#xEC42;"
+                            Visibility="Visible" />
+                        <TextBlock
+                            x:Name="BattStatus2"
+                            Margin="0,0,4,6"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="12"
+                            Foreground="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                            Text="{x:Bind Mode=OneWay, Path=ViewModel.BatteryStatusCharacter}"
+                            Visibility="{x:Bind Mode=OneWay, Path=ViewModel.BattStatusVisibility}" />
+                        <Grid>
+                            <TextBlock
+                                x:Name="WifiStatusBackground2"
+                                Margin="{x:Bind Mode=OneWay, Path=ViewModel.NetworkStatusMargin}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                                Opacity="0.4"
+                                Text="{x:Bind Mode=OneWay, Path=ViewModel.NetworkStatusBackground}" />
+                            <TextBlock
+                                x:Name="WifiStatus2"
+                                Margin="{x:Bind Mode=OneWay, Path=ViewModel.NetworkStatusMargin}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="14"
+                                Foreground="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
+                                Text="{x:Bind Mode=OneWay, Path=ViewModel.NetworkStatusCharacter}" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
             </Button>
         </StackPanel>
-        <StackPanel x:Name="RightControls" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Right" Height="50" Padding="0" Width="75" Style="{StaticResource TaskbarButtonStyle}" ToolTipService.ToolTip="Action Center" x:Name="ActionCenterButton" Command="{x:Bind ViewModel.ActionCenterButtonClickedCommand, Mode=OneWay}">
-                <Button.Content>
-                    <Grid Padding="0" Height="50" Width="75">
-                        <TextBlock Text="{x:Bind ViewModel.TimeText, Mode=OneWay}" HorizontalAlignment="Right" Foreground="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" FontWeight="Medium" Margin="5,5,10,5" x:Name="ClockText" VerticalAlignment="Top"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="&#xEC42;" FontFamily="Segoe MDL2 Assets" Foreground="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="NotifStatus" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,7" Visibility="{x:Bind ViewModel.NotifIndicatorVisibility, Mode=OneWay}"/>
-                            <TextBlock Text="{x:Bind ViewModel.BatteryStatusCharacter, Mode=OneWay}" FontFamily="Segoe MDL2 Assets" Foreground="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="BattStatus" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,6" Visibility="{x:Bind ViewModel.BattStatusVisibility, Mode=OneWay}"/>
-                            <Grid>
-                                <TextBlock Text="{x:Bind ViewModel.NetworkStatusBackground, Mode=OneWay}" FontFamily="Segoe MDL2 Assets" Foreground="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" Opacity="0.4" x:Name="WifiStatusBackground" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{x:Bind ViewModel.NetworkStatusMargin, Mode=OneWay}"/>
-                                <TextBlock Text="{x:Bind ViewModel.NetworkStatusCharacter, Mode=OneWay}" FontFamily="Segoe MDL2 Assets" Foreground="{x:Bind ViewModel.ThemedIconBrush, Mode=OneWay}" x:Name="WifiStatus" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="{x:Bind ViewModel.NetworkStatusMargin, Mode=OneWay}"/>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                </Button.Content>
-            </Button>
-        </StackPanel>
+        <TextBlock
+            x:Name="batteryStatusText"
+            Width="158"
+            Height="51"
+            Margin="1483,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Text="{x:Bind Mode=OneWay, Path=ViewModel.BatteryStatusCharacter}"
+            TextWrapping="Wrap" />
     </Grid>
 </Page>

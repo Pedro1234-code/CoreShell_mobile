@@ -2,30 +2,52 @@
     x:Class="factoryos_10x_shell.Views.MainDesktop"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:factoryos_10x_shell.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:factoryos_10x_shell.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.Resources>
         <CubicEase x:Key="CubicEaseInOut" EasingMode="EaseInOut" />
         <QuadraticEase x:Key="QuadraticEaseInOut" EasingMode="EaseInOut" />
     </Page.Resources>
-    
+
     <Grid>
-        <Image x:Name="BackgroundWallpaper" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="ms-appx:///Assets/waves.jpg" Stretch="Fill" Grid.Row="0"/>
-        <Frame x:Name="StartMenuFrame" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxWidth="810" MaxHeight="685" Margin="10,10,10,60" Background="Transparent" CornerRadius="4">
+        <Image
+            x:Name="BackgroundWallpaper"
+            Grid.Row="0"
+            Stretch="UniformToFill" />
+        <Frame
+            x:Name="StartMenuFrame"
+            MaxWidth="810"
+            MaxHeight="685"
+            Margin="10,10,10,60"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            Background="Transparent"
+            CornerRadius="4">
             <Frame.RenderTransform>
-                <TranslateTransform Y="800" x:Name="StartMenuTransform"/>
+                <TranslateTransform x:Name="StartMenuTransform" Y="800" />
             </Frame.RenderTransform>
         </Frame>
-        <Frame x:Name="ActionCenterFrame" HorizontalAlignment="Right" VerticalAlignment="Bottom" MaxWidth="400" MinHeight="50" Margin="0,10,8,60" Background="Transparent" CornerRadius="4">
+        <Frame
+            x:Name="ActionCenterFrame"
+            MinHeight="50"
+            MaxWidth="400"
+            Margin="0,10,8,60"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Background="Transparent"
+            CornerRadius="4">
             <Frame.RenderTransform>
-                <TranslateTransform Y="800" x:Name="ActionCenterTransform"/>
+                <TranslateTransform x:Name="ActionCenterTransform" Y="800" />
             </Frame.RenderTransform>
         </Frame>
-        <Frame x:Name="TaskbarFrame" MaxHeight="50" VerticalAlignment="Bottom"/>
+        <Frame
+            x:Name="TaskbarFrame"
+            MaxHeight="50"
+            VerticalAlignment="Bottom" />
     </Grid>
 </Page>

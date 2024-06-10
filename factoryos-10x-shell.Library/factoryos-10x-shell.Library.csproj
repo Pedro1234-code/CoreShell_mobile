@@ -146,8 +146,6 @@
     <Compile Include="ViewModels\ActionCenterHomeViewModel.cs" />
     <Compile Include="ViewModels\DebugMenuViewModel.cs" />
     <Compile Include="ViewModels\Default10xBarViewModel.cs" />
-    <Compile Include="ViewModels\LockDialogViewModel.cs" />
-    <Compile Include="ViewModels\LockScreenViewModel.cs" />
     <Compile Include="ViewModels\MainDesktopViewModel.cs" />
     <Compile Include="ViewModels\PowerDialogViewModel.cs" />
     <Compile Include="ViewModels\StartMenuViewModel.cs" />

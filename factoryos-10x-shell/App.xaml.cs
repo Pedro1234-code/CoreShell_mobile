@@ -8,12 +8,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.AppService;
+using Windows.Foundation.Collections;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.ExtendedExecution;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Graphics.Imaging;
 using Windows.Management.Deployment;
 using Windows.Media.Playback;
@@ -27,6 +30,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 namespace factoryos_10x_shell
 {
@@ -34,15 +38,15 @@ namespace factoryos_10x_shell
     {
         public static MediaPlayer MediaPlayer;
 
+        [Obsolete]
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-
             MediaPlayer = BackgroundMediaPlayer.Current;
         }
 
+        private ExtendedExecutionSession _session; // Declaração da variável no nível da classe
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             ConfigureServices();
@@ -76,6 +80,27 @@ namespace factoryos_10x_shell
                 }
                 Window.Current.Activate();
             }
+
+            _session = new ExtendedExecutionSession
+            {
+                Reason = ExtendedExecutionReason.Unspecified
+            };
+            _session.Revoked += Session_Revoked;
+            var result = await _session.RequestExtensionAsync();
+            if (result == ExtendedExecutionResult.Allowed)
+            {
+                // The session was allowed.
+            }
+
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+            var view = ApplicationView.GetForCurrentView();
+            view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
+        }
+
+        private void Session_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
+        {
+            // Handle the session being revoked here
+            _session.Dispose();
         }
 
 

@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="factoryos_10x_shell.Views.PowerDialogScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:factoryos_10x_shell.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Image
+            x:Name="BG_powerdiag"
+            Opacity="59"
+            Stretch="UniformToFill" />
+        <Rectangle
+            Width="428"
+            Height="268"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Stroke="Black" />
+        <Button
+            x:Name="ShutDownButton"
+            Width="210"
+            HorizontalAlignment="Center"
+            Content="Shutdown" />
+
+    </Grid>
+</Page>

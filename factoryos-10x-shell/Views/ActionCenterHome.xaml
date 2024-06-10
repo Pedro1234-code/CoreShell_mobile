@@ -16,42 +16,7 @@
 
     <Grid>
         <StackPanel>
-            <StackPanel Width="360" Background="{ThemeResource TaskbarAcrylicBrush}" x:Name="NotifRootPanel" Margin="0,0,0,5" CornerRadius="4" Visibility="{x:Bind ViewModel.NotifWindowVisibility, Mode=OneWay}">
-                <StackPanel Orientation="Horizontal" Width="360" Height="36">
-                    <TextBlock Text="Notifications" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12"/>
-                    <Grid Margin="8,0,175,0">
-                        <Ellipse Height="24" Width="24" Fill="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" Margin="0,0,0,0"/>
-                        <TextBlock Text="{x:Bind ViewModel.NotifCount, Mode=OneWay}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="NotifCount" Margin="0,0,0,0"/>
-                    </Grid>
-                    <Button CornerRadius="10" Padding="0" Content="Clear all" FontSize="11" Width="60" Height="22" Background="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" x:Name="ClearNotifs" Command="{x:Bind ViewModel.ClearNotificationsCommand, Mode=OneWay}"/>
-                </StackPanel>
-                <ScrollViewer MaxHeight="440">
-                    <StackPanel Width="360" Background="{ThemeResource WhiteTintBrushNormal}">
-                        <ListView x:Name="NotifListView" ItemsSource="{x:Bind ViewModel.Notifications}" SelectionMode="None">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="110">
-                                        <Border x:Name="NotificationBackground">
-                                            <StackPanel Orientation="Vertical" x:Name="NotificationStack" Width="350">
-                                                <StackPanel Orientation="Horizontal" Width="350">
-                                                    <Image Source="{Binding IconSource}" Height="28" Width="28" Margin="0,6,0,0"/>
-                                                    <TextBlock Text="{Binding AppName}" FontSize="13" Margin="8,10,0,0"/>
-                                                    <TextBlock Text="{Binding NotificationTime}" FontSize="13" Margin="8,10,0,0" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"/>
-                                                </StackPanel>
-                                                <StackPanel Margin="5,8,5,0" Width="350">
-                                                    <TextBlock Text="{Binding NotificationMainContent}"/>
-                                                    <TextBlock Text="{Binding NotificationSecondaryContent}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" Width="350" TextWrapping="WrapWholeWords" MaxLines="2"/>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Border>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                </ScrollViewer>
-            </StackPanel>
-            
+
             <StackPanel Width="360" Background="{ThemeResource TaskbarAcrylicBrush}" CornerRadius="4">
                 <StackPanel Orientation="Horizontal" Width="360" Height="40" Background="Transparent">
                     <TextBlock Text="Quick Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,240,0" FontSize="12"/>

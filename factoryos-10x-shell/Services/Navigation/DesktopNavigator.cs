@@ -21,7 +21,6 @@ namespace factoryos_10x_shell.Services.Navigation
         {
             Type navType = pageType switch
             {
-                DesktopPageType.RootContentLockScreen => typeof(LockScreen),
                 DesktopPageType.RootContentDesktop => typeof(MainDesktop)
             };
 

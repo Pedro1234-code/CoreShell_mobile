@@ -5,19 +5,20 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+    xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp">
+  IgnorableNamespaces="uap mp rescap">
 
   <Identity
-    Name="27a684a3-fafc-4a41-a89d-7fd468179a57"
-    Publisher="CN=Pdawg"
-    Version="1.0.0.0" />
+    Name="MobileOSDev.CoreShell"
+    Publisher="CN=70CF1695-06B3-4B57-8DCD-3788C28AED2F"
+    Version="1.0.4.0" />
 
   <mp:PhoneIdentity PhoneProductId="27a684a3-fafc-4a41-a89d-7fd468179a57" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>factoryos-10x-shell</DisplayName>
-    <PublisherDisplayName>Pdawg</PublisherDisplayName>
+    <DisplayName>CoreShell Mobile</DisplayName>
+    <PublisherDisplayName>MobileOSDev</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,16 +33,28 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="factoryos_10x_shell.App">
+      EntryPoint="CoreShell.App">
       <uap:VisualElements
-        DisplayName="factoryos-10x-shell"
+        DisplayName="CoreShell Mobile"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="factoryos-10x-shell"
+        Description="Shell for Windows MobileOS project. Fork from Pdawg&apos;s FactoryOS 10X shell."
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="CoreShell.exe" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="coreshell">
+            <uap:DisplayName>CoreShell</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
@@ -51,6 +64,9 @@
     <rescap:Capability Name="packageQuery" />
     <rescap:Capability Name="packageManagement" />
     <rescap:Capability Name="fullTrust" />
+    <rescap:Capability Name="userProfile" />
+    <rescap:Capability Name="runFullTrust"/>
+    <rescap:Capability Name="inputInjectionBrokered" />
     <DeviceCapability Name="bluetooth"/>
   </Capabilities>
 </Package>
