@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Pdawg-bytes/factoryos-10x-shell/main/factoryos-10x-shell/Assets/Square150x150Logo.scale-200.png"></img>
+  ![MobileOS_logo-removebg-preview](https://github.com/Pedro1234-code/CoreShell_mobile/assets/78425126/187c7996-fa57-4f03-9171-9b96f5618216)
+
 </p>
 
 ---
