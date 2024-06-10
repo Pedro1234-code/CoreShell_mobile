@@ -1,7 +1,4 @@
-<p align="center">
-  ![MobileOS_logo-removebg-preview](https://github.com/Pedro1234-code/CoreShell_mobile/assets/78425126/187c7996-fa57-4f03-9171-9b96f5618216)
-
-</p>
+![MobileOS_logo-removebg-preview](https://github.com/Pedro1234-code/CoreShell_mobile/assets/78425126/d9519de9-3df3-4a15-bda1-c965f866eb35)
 
 ---
 
