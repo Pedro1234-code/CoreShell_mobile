@@ -24,21 +24,21 @@
     <ProjectConfiguration Include="Release|ARM">
       <Configuration>Release</Configuration>
       <Platform>ARM</Platform>
-	  <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
-	  <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x86">
       <Configuration>Release</Configuration>
       <Platform>x86</Platform>
-	  <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>14D3031D-F171-4D9E-B0B0-41B64BA4E65D</ProjectGuid>
+    <ProjectGuid>F1F43C6A-9D24-487B-90C2-64DF09CE731D</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
@@ -47,38 +47,88 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
   <PropertyGroup>
-	<EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>8F672E6C413F7414B9709BB7210601535E07A0AF</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>Powerdialoguwp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="images\LargeTile.scale-100.png" />
+    <Content Include="images\LargeTile.scale-125.png" />
+    <Content Include="images\LargeTile.scale-150.png" />
+    <Content Include="images\LargeTile.scale-200.png" />
+    <Content Include="images\LargeTile.scale-400.png" />
     <Content Include="images\logo.scale-100.png" />
+    <Content Include="images\Logo.scale-125.png" />
+    <Content Include="images\Logo.scale-150.png" />
+    <Content Include="images\Logo.scale-200.png" />
+    <Content Include="images\Logo.scale-400.png" />
+    <Content Include="images\SmallTile.scale-100.png" />
+    <Content Include="images\SmallTile.scale-125.png" />
+    <Content Include="images\SmallTile.scale-150.png" />
+    <Content Include="images\SmallTile.scale-200.png" />
+    <Content Include="images\SmallTile.scale-400.png" />
+    <Content Include="images\splashscreen.scale-125.png" />
+    <Content Include="images\splashscreen.scale-150.png" />
+    <Content Include="images\splashscreen.scale-200.png" />
+    <Content Include="images\splashscreen.scale-400.png" />
+    <Content Include="images\square44logo.altform-unplated_targetsize-16.png" />
+    <Content Include="images\square44logo.altform-unplated_targetsize-24.png" />
+    <Content Include="images\square44logo.altform-unplated_targetsize-256.png" />
+    <Content Include="images\square44logo.altform-unplated_targetsize-32.png" />
+    <Content Include="images\square44logo.altform-unplated_targetsize-48.png" />
+    <Content Include="images\square44logo.scale-100.png" />
+    <Content Include="images\square44logo.scale-125.png" />
+    <Content Include="images\square44logo.scale-150.png" />
     <Content Include="images\square44logo.scale-200.png" />
     <Content Include="images\splashscreen.scale-100.png" />
+    <Content Include="images\square44logo.scale-400.png" />
+    <Content Include="images\square44logo.targetsize-16.png" />
+    <Content Include="images\square44logo.targetsize-24.png" />
+    <Content Include="images\square44logo.targetsize-256.png" />
+    <Content Include="images\square44logo.targetsize-32.png" />
+    <Content Include="images\square44logo.targetsize-48.png" />
     <Content Include="images\storelogo.scale-100.png" />
-	<Content Include="index.html" />
-	<Content Include="start.js" />
-	<Content Include="data.json" />
-	<Content Include="c2runtime.js" />
-	<Content Include="jquery-3.4.1.min.js" />
-	<Content Include="images\bg-sheet0.png" />
-	<Content Include="images\retangle-sheet0.png" />
-	<Content Include="images\shutdownbutton-sheet0.png" />
-	<Content Include="icon-16.png" />
-	<Content Include="icon-32.png" />
-	<Content Include="icon-114.png" />
-	<Content Include="icon-128.png" />
-	<Content Include="icon-256.png" />
-	<Content Include="loading-logo.png" />
-
-    
+    <Content Include="images\storelogo.scale-125.png" />
+    <Content Include="images\storelogo.scale-150.png" />
+    <Content Include="images\storelogo.scale-200.png" />
+    <Content Include="images\storelogo.scale-400.png" />
+    <Content Include="images\WideTile.scale-100.png" />
+    <Content Include="images\WideTile.scale-125.png" />
+    <Content Include="images\WideTile.scale-150.png" />
+    <Content Include="images\WideTile.scale-200.png" />
+    <Content Include="images\WideTile.scale-400.png" />
+    <Content Include="index.html" />
+    <None Include="Powerdialoguwp_TemporaryKey.pfx" />
+    <Content Include="start.js" />
+    <Content Include="data.json" />
+    <Content Include="c2runtime.js" />
+    <Content Include="jquery-3.4.1.min.js" />
+    <Content Include="images\bg-sheet0.png" />
+    <Content Include="images\retangle-sheet0.png" />
+    <Content Include="images\shutdownbutton-sheet0.png" />
+    <Content Include="images\cancel-sheet0.png" />
+    <Content Include="images\power-sheet0.png" />
+    <Content Include="icon-16.png" />
+    <Content Include="icon-32.png" />
+    <Content Include="icon-114.png" />
+    <Content Include="icon-128.png" />
+    <Content Include="icon-256.png" />
+    <Content Include="loading-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
