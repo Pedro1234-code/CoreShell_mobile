@@ -62,6 +62,7 @@
     <Capability Name="internetClient" />
     <uap3:Capability Name="userNotificationListener"/>
     <rescap:Capability Name="packageQuery" />
+    <rescap:Capability Name="broadFileSystemAccess" />
     <rescap:Capability Name="packageManagement" />
     <rescap:Capability Name="fullTrust" />
     <rescap:Capability Name="userProfile" />
