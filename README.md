@@ -23,6 +23,10 @@ Changes:
 
 - Fixed Search (opens system Search application)
 
+- Reimplemented the Power Dialog (it now works, it can shut down and reboot the system, but it was still intentionally not implemented, it opens Notepad instead).
+
+- Added shortcuts for Microsoft Edge and Shell:AppsFolder.
+
 - Removed incompatible notification code so it can run on full Windows.
 
 - The default background is the system background image (place the image in C:\Windows\Web\Wallpaper\Windows before setting)
