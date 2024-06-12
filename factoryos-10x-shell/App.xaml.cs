@@ -97,6 +97,7 @@ namespace factoryos_10x_shell
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
         }
 
+
         private void Session_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
         {
             // Handle the session being revoked here
