@@ -25,7 +25,7 @@ Changes:
 
 - Reimplemented the Power Dialog (it now works, it can shut down and reboot the system, but it was still intentionally not implemented, it opens Notepad instead).
 
-- Added shortcuts for Microsoft Edge and Shell:AppsFolder.
+- Added shortcuts for Microsoft Edge, Apps Folder and File Explorer.
 
 - Removed incompatible notification code so it can run on full Windows.
 
