@@ -13,13 +13,11 @@ namespace EdgeW32hook
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe", "/c msedge");
-            startInfo.CreateNoWindow = true;
-            startInfo.UseShellExecute = false;
-
-            Process process = new Process();
-            process.StartInfo = startInfo;
-            process.Start();
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "microsoft-edge://",
+                UseShellExecute = true
+            });
         }
     }
 }
