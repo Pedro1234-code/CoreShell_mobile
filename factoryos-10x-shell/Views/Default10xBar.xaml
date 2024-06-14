@@ -82,82 +82,82 @@
                 CornerRadius="0"
                 ToolTipService.ToolTip="Start">
                 <Viewbox>
-                    <Canvas
-                        x:Name="StartCanvas"
-                        Width="1024"
-                        Height="1024">
-                        <Path
-                            x:Name="NormalTopLeft"
-                            Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z"
-                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.15" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="NormalBottomLeft"
-                            Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z"
-                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.15" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="NormalTopRight"
-                            Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z"
-                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.25" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="NormalBottomRight"
-                            Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z"
-                            Fill="{x:Bind Mode=OneWay, Path=ViewModel.ThemedIconBrush}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartNormalOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.30" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="ColorTopLeft"
-                            Data="M427.866 95.189V495.289H16.0659L16.0659 150.5C16.0659 150.5 9.79999 150.8 62 145C114.2 139.2 427.866 95.189 427.866 95.189Z"
-                            Fill="{StaticResource TopLeftStartCorner}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.15" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="ColorBottomLeft"
-                            Data="M427.866 929.589V529.489H16.0659L16.0659 874.5C16.0659 874.5 12.1659 874.489 64.3659 880.289C116.666 886.089 427.866 929.589 427.866 929.589Z"
-                            Fill="{StaticResource BottomLeftStartCorner}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.20" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="ColorTopRight"
-                            Data="M461.966 91.289V495.289H1007.07L1005.5 12.5C1005.5 12.5 1003.17 13.089 947.166 20.789C891.166 28.489 461.966 91.289 461.966 91.289Z"
-                            Fill="{StaticResource TopRightStartCorner}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.25" />
-                            </Path.OpacityTransition>
-                        </Path>
-                        <Path
-                            x:Name="ColorBottomRight"
-                            Data="M461.966 933.489V529.489H1007.07V1011.5C1007.07 1011.5 1003.17 1011.79 947.166 1004.09C891.166 996.289 461.966 933.489 461.966 933.489Z"
-                            Fill="{StaticResource BottomRightStartCorner}"
-                            Opacity="{x:Bind Mode=OneWay, Path=ViewModel.StartColorOpacity}">
-                            <Path.OpacityTransition>
-                                <ScalarTransition Duration="0:0:0.30" />
-                            </Path.OpacityTransition>
-                        </Path>
+                    <Canvas Width="87" Height="87">
+                        <Grid
+                            Width="42"
+                            Height="42"
+                            CornerRadius="4,0,0,0">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush>
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0" Color="#77effc" />
+                                                <GradientStop Offset="1" Color="#50d4ff" />
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+
+                        <Grid
+                            Canvas.Left="44"
+                            Width="42"
+                            Height="42"
+                            CornerRadius="0,4,0,0">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush>
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0" Color="#5bdcff" />
+                                                <GradientStop Offset="1" Color="#30baff" />
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+
+                        <Grid
+                            Canvas.Top="44"
+                            Width="42"
+                            Height="42"
+                            CornerRadius="0,0,0,4">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush>
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0" Color="#50d4ff" />
+                                                <GradientStop Offset="1" Color="#21aeff" />
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+
+                        <Grid
+                            Canvas.Left="44"
+                            Canvas.Top="44"
+                            Width="42"
+                            Height="42"
+                            CornerRadius="0,0,4,0">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush>
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0" Color="#39c1fd" />
+                                                <GradientStop Offset="1" Color="#0b9dff" />
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
                     </Canvas>
                 </Viewbox>
             </Button>
