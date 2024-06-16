@@ -33,6 +33,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.ApplicationModel.Background;
+using Windows.Storage;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 
@@ -100,7 +102,6 @@ namespace factoryos_10x_shell
             var view = ApplicationView.GetForCurrentView();
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
         }
-
 
         private void Session_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
         {

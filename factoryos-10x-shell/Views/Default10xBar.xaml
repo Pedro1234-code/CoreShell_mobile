@@ -67,6 +67,20 @@
                     Stretch="Uniform" />
             </Button.Content>
         </Button>
+        <Button
+            x:Name="CopilotButton"
+            Width="60"
+            Height="50"
+            Margin="75,0,0,0"
+            Padding="0"
+            Click="CopilotButton_Click"
+            Style="{StaticResource TaskbarButtonStyle}"
+            ToolTipService.ToolTip="Copilot">
+            <Image
+                Width="34"
+                Height="32"
+                Source="ms-appx:///Microsoft-Copilot.png" />
+        </Button>
 
 
 
@@ -174,11 +188,10 @@
                 Padding="0"
                 Click="PowerButton_Click"
                 Style="{StaticResource TaskbarButtonStyle}">
-                <Image Width="26" Height="26">
-                    <Image.Source>
-                        <ThemeResource ResourceKey="PowerButtonImageSource" />
-                    </Image.Source>
-                </Image>
+                <Image
+                    Width="34"
+                    Height="32"
+                    Source="{ThemeResource PowerButtonImageSource}" />
             </Button>
 
             <Button
@@ -256,5 +269,6 @@
             VerticalAlignment="Center"
             Text="{x:Bind Mode=OneWay, Path=ViewModel.BatteryStatusCharacter}"
             TextWrapping="Wrap" />
+
     </Grid>
 </Page>

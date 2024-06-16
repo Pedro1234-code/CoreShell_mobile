@@ -42,5 +42,10 @@ namespace factoryos_10x_shell.Views
         {
             Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
         }
+
+        private void CopilotButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

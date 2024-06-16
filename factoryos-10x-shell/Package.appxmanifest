@@ -5,9 +5,9 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
-    xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp rescap">
+  IgnorableNamespaces="uap mp rescap uap3 uap5">
 
   <Identity
     Name="MobileOSDev.CoreShell"
@@ -31,14 +31,14 @@
   </Resources>
 
   <Applications>
-    <Application Id="App"
+    <Application Id="CoreShellApp"
       Executable="$targetnametoken$.exe"
       EntryPoint="CoreShell.App">
       <uap:VisualElements
         DisplayName="CoreShell Mobile"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Shell for Windows MobileOS project. Fork from Pdawg&apos;s FactoryOS 10X shell."
+        Description="Shell for Windows MobileOS project. Fork from Pdawg FactoryOS 10X shell."
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
@@ -57,7 +57,6 @@
       </Extensions>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
     <uap3:Capability Name="userNotificationListener"/>
