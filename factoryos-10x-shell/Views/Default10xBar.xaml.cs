@@ -12,6 +12,7 @@ using Windows.Foundation.Collections;
 using System.Threading.Tasks;
 using Windows.Devices.Power;
 using Windows.UI.Core;
+using System.Linq;
 
 
 namespace factoryos_10x_shell.Views
@@ -43,9 +44,22 @@ namespace factoryos_10x_shell.Views
             Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
         }
 
-        private void CopilotButton_Click(object sender, RoutedEventArgs e)
+        private async void CopilotButton_Click(object sender, RoutedEventArgs e)
         {
+            var packageFamilyName = "MobileOSdev.CopilotPWA_4sdaedqydyjdm";
+            var pm = new Windows.Management.Deployment.PackageManager();
+            var packages = pm.FindPackagesForUser(string.Empty, packageFamilyName);
 
+            var foundPackage = packages.FirstOrDefault();
+            if (foundPackage != null)
+            {
+                var appListEntries = await foundPackage.GetAppListEntriesAsync();
+                var entry = appListEntries.FirstOrDefault();
+                if (entry != null)
+                {
+                    bool success = await entry.LaunchAsync();
+                }
+            }
         }
     }
 }
