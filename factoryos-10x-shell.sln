@@ -57,7 +57,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MobileShellExtension", "..\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MobileCoreServer", "..\MobileShell\src\MobileCoreServer\MobileCoreServer.vcxproj", "{614F0FB6-CD99-4F21-BAED-7536AC5D58B4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileBluebirdBrowser", "MobileBluebirdBrowser", "{774091B6-0EB3-497D-928D-82915DD9465C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobium", "Mobium", "{774091B6-0EB3-497D-928D-82915DD9465C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluebird", "browser\src\Bluebird\Bluebird.csproj", "{3226F93F-C704-419D-A116-C5C02F81C7C6}"
 EndProject

@@ -93,11 +93,27 @@ namespace CopilotPWA
         /// </summary>
         /// <param name="sender">A origem da solicitação de suspensão.</param>
         /// <param name="e">Detalhes sobre a solicitação de suspensão.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Salvar o estado do aplicativo e parar qualquer atividade em segundo plano
+            //TODO: Anwendungszustand speichern und alle Hintergrundaktivitäten beenden
             deferral.Complete();
+
+            var packageFamilyName = "MobileOSDev.CoreShell_d7x680j9yw8bm";
+            var pm = new Windows.Management.Deployment.PackageManager();
+            var packages = pm.FindPackagesForUser(string.Empty, packageFamilyName);
+
+            var foundPackage = packages.FirstOrDefault();
+            if (foundPackage != null)
+            {
+                var appListEntries = await foundPackage.GetAppListEntriesAsync();
+                var entry = appListEntries.FirstOrDefault();
+                if (entry != null)
+                {
+                    bool success = await entry.LaunchAsync();
+                }
+            }
+
         }
     }
 }
