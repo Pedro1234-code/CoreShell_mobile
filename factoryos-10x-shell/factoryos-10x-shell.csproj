@@ -186,7 +186,7 @@
     <Content Include="Assets\SmallTile.scale-200.png" />
     <Content Include="Assets\SmallTile.scale-400.png" />
     <Content Include="Assets\Sounds\AlertCharging.wav" />
-    <Content Include="Assets\Sounds\BootUp.wav" />
+    <Content Include="Assets\Sounds\BootUp1.wav" />
     <Content Include="Assets\Sounds\CalendarReminder.wav" />
     <Content Include="Assets\Sounds\Default.wav" />
     <Content Include="Assets\Sounds\DeviceConnect.wav" />
@@ -200,6 +200,7 @@
     <Content Include="Assets\Sounds\NotificationMail.wav" />
     <Content Include="Assets\Sounds\NotificationToast.wav" />
     <Content Include="Assets\Sounds\UserAccountControl.wav" />
+    <Content Include="Assets\Sounds\BootUp.wav" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
