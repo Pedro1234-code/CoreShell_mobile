@@ -48,7 +48,6 @@
             VerticalAlignment="Top"
             FontFamily="Sans Serif Collection"
             FontSize="20"
-            SelectionChanged="TextBlock_SelectionChanged"
             Text="Update application"
             TextWrapping="Wrap" />
         <TextBlock
@@ -58,7 +57,6 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             FontSize="16"
-            SelectionChanged="TextBlock_SelectionChanged_1"
             TextWrapping="Wrap"><Run Text="About this project" /><LineBreak /><Run /><LineBreak /><Run Text="Windows MobileOS tries to improve Windows on mobile devices, by developing apps and tweaks to make it more usable on small screens." /><LineBreak /><Run /><LineBreak /><Run /></TextBlock>
     </Grid>
 </Page>
