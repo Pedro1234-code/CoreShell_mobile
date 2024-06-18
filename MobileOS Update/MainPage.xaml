@@ -17,11 +17,48 @@
             VerticalAlignment="Top"
             Source="ms-appx:///458x72dark.png"
             Stretch="Uniform" />
+
+        <TextBlock
+            Width="321"
+            Height="50"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="20"
+            TextWrapping="Wrap"><Run Text="Check for MobileOS" /><Run Text=" app" /><Run Text=" updates" />
+        </TextBlock>
+
         <Button
-            Width="156"
-            Height="52"
-            Margin="10,206,0,0"
+            x:Name="UpdateButton"
+            Width="37"
+            Height="36"
+            Margin="0,232,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
+            <Image
+                Width="34"
+                Height="32"
+                Margin="-10,-4,-11,-5"
+                Source="ms-appx:///UpdateIcon.png" />
+        </Button>
+
+        <TextBlock
+            Width="178"
+            Margin="0,103,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Check for Updates" />
+            FontFamily="Sans Serif Collection"
+            FontSize="20"
+            SelectionChanged="TextBlock_SelectionChanged"
+            Text="Update application"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Width="366"
+            Height="115"
+            Margin="16,0,0,10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            FontSize="16"
+            SelectionChanged="TextBlock_SelectionChanged_1"
+            TextWrapping="Wrap"><Run Text="About this project" /><LineBreak /><Run /><LineBreak /><Run Text="Windows MobileOS tries to improve Windows on mobile devices, by developing apps and tweaks to make it more usable on small screens." /><LineBreak /><Run /><LineBreak /><Run /></TextBlock>
     </Grid>
 </Page>
