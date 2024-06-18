@@ -48,7 +48,7 @@ namespace factoryos_10x_shell
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += OnSuspendingAsync;
             MediaPlayer = BackgroundMediaPlayer.Current;
         }
 
@@ -115,10 +115,24 @@ namespace factoryos_10x_shell
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspendingAsync(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             deferral.Complete();
+            var packageFamilyName = "MobileOSDev.CoreShell_d7x680j9yw8bm";
+            var pm = new Windows.Management.Deployment.PackageManager();
+            var packages = pm.FindPackagesForUser(string.Empty, packageFamilyName);
+
+            var foundPackage = packages.FirstOrDefault();
+            if (foundPackage != null)
+            {
+                var appListEntries = await foundPackage.GetAppListEntriesAsync();
+                var entry = appListEntries.FirstOrDefault();
+                if (entry != null)
+                {
+                    bool success = await entry.LaunchAsync();
+                }
+            }
         }
     }
 }
