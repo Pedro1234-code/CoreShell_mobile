@@ -46,7 +46,7 @@ namespace factoryos_10x_shell.Views
 
         private async void CopilotButton_Click(object sender, RoutedEventArgs e)
         {
-            var packageFamilyName = "MobileOSdev.CopilotPWA_4sdaedqydyjdm";
+            var packageFamilyName = "MobileOSdev.CopilotPWA_d7x680j9yw8bm";
             var pm = new Windows.Management.Deployment.PackageManager();
             var packages = pm.FindPackagesForUser(string.Empty, packageFamilyName);
 
