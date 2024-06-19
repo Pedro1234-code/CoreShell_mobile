@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Core;
@@ -14,7 +17,7 @@ namespace MobileOS_Update
     {
         private const string CurrentVersion = "20724"; // Set your current version here
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
-        private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/Appx.Packer.v3.0.zip"; // URL to the update package
+        private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
         public MainPage()
         {
@@ -107,9 +110,8 @@ namespace MobileOS_Update
 
                         if (pickedFolder != null)
                         {
-                            // Move the temporary file to the picked folder, replacing any existing file
-                            await tempFile.MoveAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.ReplaceExisting);
-                            // Inform the user about the update (You can use a dialog or any other UI element)
+                            StorageFile destinationFile = await tempFile.CopyAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.ReplaceExisting);
+                            await ExtractAndInstallPackagesAsync(destinationFile, pickedFolder);
                         }
                         else
                         {
@@ -125,6 +127,62 @@ namespace MobileOS_Update
             catch (Exception ex)
             {
                 // Handle exceptions (e.g., network issues)
+            }
+        }
+
+        private async Task ExtractAndInstallPackagesAsync(StorageFile zipFile, StorageFolder destinationFolder)
+        {
+            try
+            {
+                using (Stream zipStream = await zipFile.OpenStreamForReadAsync())
+                using (ZipFile zip = new ZipFile(zipStream))
+                {
+                    foreach (ZipEntry entry in zip)
+                    {
+                        if (!entry.IsFile) continue;
+
+                        string entryFileName = entry.Name;
+                        Stream zipEntryStream = zip.GetInputStream(entry);
+
+                        // Create full output path
+                        StorageFile outputFile = await destinationFolder.CreateFileAsync(entryFileName, CreationCollisionOption.ReplaceExisting);
+
+                        using (Stream outputStream = await outputFile.OpenStreamForWriteAsync())
+                        {
+                            byte[] buffer = new byte[4096];
+                            StreamUtils.Copy(zipEntryStream, outputStream, buffer);
+                        }
+
+                        if (entryFileName.EndsWith(".msix", StringComparison.OrdinalIgnoreCase) ||
+                            entryFileName.EndsWith(".msixbundle", StringComparison.OrdinalIgnoreCase))
+                        {
+                            await InstallPackageAsync(outputFile);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle extraction or installation errors
+            }
+        }
+
+        private async Task InstallPackageAsync(StorageFile packageFile)
+        {
+            try
+            {
+                var packageManager = new PackageManager();
+                var deploymentResult = await packageManager.AddPackageAsync(new Uri(packageFile.Path), null, DeploymentOptions.ForceApplicationShutdown);
+
+                // Check the deployment result
+                if (deploymentResult != null && deploymentResult.ExtendedErrorCode != null)
+                {
+                    // Handle errors (e.g., log the error message)
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle installation errors
             }
         }
 
