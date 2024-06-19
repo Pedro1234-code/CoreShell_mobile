@@ -46,7 +46,9 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap:Capability Name="documentsLibrary" />
     <rescap:Capability Name="packageQuery" />
+    <rescap:Capability Name="broadFileSystemAccess" />
     <rescap:Capability Name="packageManagement" />
   </Capabilities>
 </Package>

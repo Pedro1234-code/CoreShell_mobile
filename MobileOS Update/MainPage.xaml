@@ -28,18 +28,20 @@
         </TextBlock>
 
         <Button
-            x:Name="UpdateButton"
+            x:Name="UpdateVerify"
             Width="37"
             Height="36"
             Margin="0,232,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Click="UpdateVerify_Click">
             <Image
                 Width="34"
                 Height="32"
                 Margin="-10,-4,-11,-5"
                 Source="ms-appx:///UpdateIcon.png" />
         </Button>
+
 
         <TextBlock
             Width="178"
