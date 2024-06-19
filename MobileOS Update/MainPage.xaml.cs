@@ -107,7 +107,8 @@ namespace MobileOS_Update
 
                         if (pickedFolder != null)
                         {
-                            await tempFile.MoveAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.GenerateUniqueName);
+                            // Move the temporary file to the picked folder, replacing any existing file
+                            await tempFile.MoveAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.ReplaceExisting);
                             // Inform the user about the update (You can use a dialog or any other UI element)
                         }
                         else
