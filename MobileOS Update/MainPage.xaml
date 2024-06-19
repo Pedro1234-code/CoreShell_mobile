@@ -19,6 +19,7 @@
             Stretch="Uniform" />
 
         <TextBlock
+            x:Name="MainText"
             Width="321"
             Height="50"
             HorizontalAlignment="Center"
@@ -60,5 +61,11 @@
             VerticalAlignment="Bottom"
             FontSize="16"
             TextWrapping="Wrap"><Run Text="About this project" /><LineBreak /><Run /><LineBreak /><Run Text="Windows MobileOS tries to improve Windows on mobile devices, by developing apps and tweaks to make it more usable on small screens." /><LineBreak /><Run /><LineBreak /><Run /></TextBlock>
+        <ProgressBar
+            x:Name="DownloadProgressBar"
+            Width="358"
+            Height="36"
+            HorizontalAlignment="Center"
+            Visibility="Collapsed" />
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -36,11 +37,17 @@ namespace MobileOS_Update
                     if (serverVersion > int.Parse(installedVersion))
                     {
                         // Server version is higher, proceed with download
+                        DownloadProgressBar.Visibility = Visibility.Visible;
+                        UpdateVerify.Visibility = Visibility.Collapsed;
+                        MainText.Visibility = Visibility.Collapsed;
                         await DownloadAndSaveUpdateAsync();
+                        DownloadProgressBar.Visibility = Visibility.Collapsed;
+                        UpdateVerify.Visibility = Visibility.Visible;
+                        MainText.Visibility= Visibility.Visible;
                     }
                     else
                     {
-                       // no update
+                        // no update
                     }
                 }
                 else
@@ -62,23 +69,45 @@ namespace MobileOS_Update
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    HttpResponseMessage response = await client.GetAsync(PackageUrl);
+                    HttpResponseMessage response = await client.GetAsync(PackageUrl, HttpCompletionOption.ResponseHeadersRead);
                     if (response.IsSuccessStatusCode)
                     {
                         // Save the package to a temporary location
                         StorageFile tempFile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("AppUpdate.zip", CreationCollisionOption.ReplaceExisting);
-                        await FileIO.WriteBytesAsync(tempFile, await response.Content.ReadAsByteArrayAsync());
+
+                        using (var fileStream = await tempFile.OpenStreamForWriteAsync())
+                        using (var contentStream = await response.Content.ReadAsStreamAsync())
+                        {
+                            long totalBytes = response.Content.Headers.ContentLength ?? 0;
+                            long totalBytesRead = 0;
+                            byte[] buffer = new byte[8192];
+                            int bytesRead;
+
+                            while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                            {
+                                await fileStream.WriteAsync(buffer, 0, bytesRead);
+                                totalBytesRead += bytesRead;
+
+                                if (totalBytes > 0)
+                                {
+                                    double progress = (double)totalBytesRead / totalBytes * 100;
+                                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                    {
+                                        DownloadProgressBar.Value = progress;
+                                    });
+                                }
+                            }
+                        }
 
                         // Use FolderPicker to let the user choose the save location
                         FolderPicker folderPicker = new FolderPicker();
                         folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
-                        folderPicker.FileTypeFilter.Add(".zip");
+                        folderPicker.FileTypeFilter.Add("*");
                         StorageFolder pickedFolder = await folderPicker.PickSingleFolderAsync();
 
                         if (pickedFolder != null)
                         {
                             await tempFile.MoveAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.GenerateUniqueName);
-
                             // Inform the user about the update (You can use a dialog or any other UI element)
                         }
                         else
