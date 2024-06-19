@@ -137,27 +137,7 @@
                                         Width="90"
                                         Height="90"
                                         Click="AppButton_Click"
-                                        Style="{StaticResource AppIconBackgroundStyle}">
-                                        <Button.ContextFlyout>
-                                            <MenuFlyout>
-                                                <MenuFlyoutItem Text="Pin to taskbar">
-                                                    <MenuFlyoutItem.Icon>
-                                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE718;" />
-                                                    </MenuFlyoutItem.Icon>
-                                                </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="App settings">
-                                                    <MenuFlyoutItem.Icon>
-                                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" />
-                                                    </MenuFlyoutItem.Icon>
-                                                </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Uninstall">
-                                                    <MenuFlyoutItem.Icon>
-                                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
-                                                    </MenuFlyoutItem.Icon>
-                                                </MenuFlyoutItem>
-                                            </MenuFlyout>
-                                        </Button.ContextFlyout>
-                                    </Button>
+                                        Style="{StaticResource AppIconBackgroundStyle}" />
                                     <StackPanel
                                         Width="90"
                                         Height="90"
@@ -192,7 +172,22 @@
                     <Grid
                         MaxWidth="640"
                         Margin="40,0,40,0"
-                        HorizontalAlignment="Stretch" />
+                        HorizontalAlignment="Stretch">
+                        <TextBlock
+                            Margin="0,25,0,120"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Text=" " />
+
+                        <Button
+                            x:Name="ShutdownStart"
+                            Width="40"
+                            Height="34"
+                            Margin="590,121,0,0"
+                            VerticalAlignment="Top"
+                            Click="ShutdownStart_Click" />
+
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

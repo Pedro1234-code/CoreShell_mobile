@@ -188,10 +188,12 @@
                 Padding="0"
                 Click="PowerButton_Click"
                 Style="{StaticResource TaskbarButtonStyle}">
-                <Image
-                    Width="34"
-                    Height="32"
-                    Source="{ThemeResource PowerButtonImageSource}" />
+                <Button.Content>
+                    <TextBlock
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="20"
+                        Text="&#xE7E8;" />
+                </Button.Content>
             </Button>
 
             <Button
