@@ -22,72 +22,105 @@ namespace MobileOS_Update
 
         private async void UpdateVerify_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string serverVersion = await GetServerVersionAsync(VersionFileUrl);
+            // Get the current installed version
+            string installedVersion = CurrentVersion;
 
-                if (IsNewVersionAvailable(CurrentVersion, serverVersion))
+            // Download the version info from the server
+            string serverVersionInfo = await DownloadVersionInfoAsync(VersionFileUrl);
+
+            if (!string.IsNullOrEmpty(serverVersionInfo))
+            {
+                // Parse the version from the server info
+                if (int.TryParse(serverVersionInfo, out int serverVersion))
                 {
-                    await DownloadUpdatePackageAsync(PackageUrl);
-                    // Notify the user that the update package has been downloaded
+                    if (serverVersion > int.Parse(installedVersion))
+                    {
+                        // Server version is higher, proceed with download
+                        await DownloadAndSaveUpdateAsync();
+                    }
+                    else
+                    {
+                       // no update
+                    }
                 }
                 else
                 {
-                    // Notify the user that they already have the latest version
+                    // Invalid version format in the server info
+                    // Handle this case (e.g., log an error)
+                }
+            }
+            else
+            {
+                // Error downloading version info
+                // Handle this case (e.g., show an error message)
+            }
+        }
+
+        private async Task DownloadAndSaveUpdateAsync()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(PackageUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Save the package to a temporary location
+                        StorageFile tempFile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("AppUpdate.zip", CreationCollisionOption.ReplaceExisting);
+                        await FileIO.WriteBytesAsync(tempFile, await response.Content.ReadAsByteArrayAsync());
+
+                        // Use FolderPicker to let the user choose the save location
+                        FolderPicker folderPicker = new FolderPicker();
+                        folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+                        folderPicker.FileTypeFilter.Add(".zip");
+                        StorageFolder pickedFolder = await folderPicker.PickSingleFolderAsync();
+
+                        if (pickedFolder != null)
+                        {
+                            await tempFile.MoveAsync(pickedFolder, "UpdatePackage_mobileos.zip", NameCollisionOption.GenerateUniqueName);
+
+                            // Inform the user about the update (You can use a dialog or any other UI element)
+                        }
+                        else
+                        {
+                            // Handle user cancellation
+                        }
+                    }
+                    else
+                    {
+                        // Handle unsuccessful response (e.g., server error, file not found)
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Handle errors (e.g., network issues, parsing errors)
+                // Handle exceptions (e.g., network issues)
             }
         }
 
-        private async Task<string> GetServerVersionAsync(string url)
+        public async Task<string> DownloadVersionInfoAsync(string url)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                return await client.GetStringAsync(url);
-            }
-        }
-
-        private bool IsNewVersionAvailable(string currentVersion, string serverVersion)
-        {
-            Version current = new Version(currentVersion);
-            Version server = new Version(serverVersion);
-
-            return server.CompareTo(current) > 0;
-        }
-
-        private async Task DownloadUpdatePackageAsync(string url)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-
-                byte[] packageBytes = await response.Content.ReadAsByteArrayAsync();
-
-                StorageFolder downloadsFolder = await GetDownloadsFolderAsync();
-                if (downloadsFolder != null)
+                using (HttpClient client = new HttpClient())
                 {
-                    StorageFile packageFile = await downloadsFolder.CreateFileAsync("update_package.zip", CreationCollisionOption.ReplaceExisting);
-                    await FileIO.WriteBytesAsync(packageFile, packageBytes);
+                    HttpResponseMessage response = await client.GetAsync(VersionFileUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        // Handle unsuccessful response (e.g., server error, file not found)
+                        return null;
+                    }
                 }
             }
-        }
-
-        private async Task<StorageFolder> GetDownloadsFolderAsync()
-        {
-            StorageFolder folder = null;
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            catch (Exception ex)
             {
-                FolderPicker folderPicker = new FolderPicker();
-                folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
-                folderPicker.FileTypeFilter.Add("*");
-
-                folder = await folderPicker.PickSingleFolderAsync();
-            });
-            return folder;
+                // Handle exceptions (e.g., network issues)
+                return null;
+            }
         }
     }
 }
