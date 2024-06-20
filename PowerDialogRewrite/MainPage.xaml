@@ -22,6 +22,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#324769"
+            Click="Restart_Click"
             Content="Restart"
             FontSize="16"
             Foreground="White" />
@@ -32,6 +33,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#0178d8"
+            Click="Button_Click"
             Content="Shutdown"
             FontSize="16"
             Foreground="White" />
@@ -43,6 +45,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#324769"
+            Click="CancelButton_Click"
             Content="Cancel"
             FontSize="16"
             Foreground="White" />

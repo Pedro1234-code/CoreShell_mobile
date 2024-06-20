@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,23 @@ namespace PowerDialogRewrite
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Restart_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("rebootcomponent:"));
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("shutdowncomponent:"));
+
+        }
+
+        private async void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("coreshell:"));
+            Application.Current.Exit();
         }
     }
 }

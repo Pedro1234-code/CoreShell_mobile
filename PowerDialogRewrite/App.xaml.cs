@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -69,6 +70,30 @@ namespace PowerDialogRewrite
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Verifique se a janela atual está ativa
+                Window.Current.Activate();
+            }
+
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+            var view = ApplicationView.GetForCurrentView();
+            view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+
+                if (rootFrame == null)
+                {
+                    rootFrame = new Frame();
+                    rootFrame.NavigationFailed += OnNavigationFailed;
+                    Window.Current.Content = rootFrame;
+                }
+                if (rootFrame.Content == null)
+                {
+                    rootFrame.Navigate(typeof(MainPage));
+                }
                 Window.Current.Activate();
             }
         }

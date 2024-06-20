@@ -32,6 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="PowerDialogRewrite.App">
       <uap:VisualElements
+        AppListEntry="none"
         DisplayName="PowerDialogRewrite"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
@@ -40,6 +41,13 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="powerdialogcomponent">
+            <uap:DisplayName>PowerDialogComponent</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
