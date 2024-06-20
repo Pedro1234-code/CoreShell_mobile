@@ -9,26 +9,32 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}">
         <Image
             Opacity="58"
             Source="ms-appx:///10x.png"
             Stretch="UniformToFill" />
         <Button
-            shutdown
-            Width="202"
-            Height="65"
-            Margin="0,342,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Content="Restart" />
-        <Button
+            x:Name="Restart"
             Width="202"
             Height="65"
             Margin="0,412,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Shutdown" />
+            Background="#324769"
+            Content="Restart"
+            FontSize="16"
+            Foreground="White" />
+        <Button
+            Width="202"
+            Height="65"
+            Margin="0,342,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#0178d8"
+            Content="Shutdown"
+            FontSize="16"
+            Foreground="White" />
         <Button
             x:Name="CancelButton"
             Width="202"
@@ -36,6 +42,20 @@
             Margin="0,640,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Cancel" />
+            Background="#324769"
+            Content="Cancel"
+            FontSize="16"
+            Foreground="White" />
+        <TextBlock
+            Width="45"
+            Height="50"
+            Margin="0,256,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontFamily="Segoe MDL2 Assets"
+            FontSize="45"
+            Foreground="White"
+            Text="&#xE7E8;"
+            TextWrapping="Wrap" />
     </Grid>
 </Page>
