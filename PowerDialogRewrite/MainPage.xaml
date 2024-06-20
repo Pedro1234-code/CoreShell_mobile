@@ -10,21 +10,32 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Image Source="ms-appx:///10x.png" Stretch="UniformToFill" />
+        <Image
+            Opacity="58"
+            Source="ms-appx:///10x.png"
+            Stretch="UniformToFill" />
         <Button
-            Width="160"
+            shutdown
+            Width="202"
             Height="65"
             Margin="0,342,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Restart" />
         <Button
-            Width="160"
+            Width="202"
             Height="65"
             Margin="0,412,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Shutdown" />
-        <Button Content="Button" />
+        <Button
+            x:Name="CancelButton"
+            Width="202"
+            Height="65"
+            Margin="0,640,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Cancel" />
     </Grid>
 </Page>
