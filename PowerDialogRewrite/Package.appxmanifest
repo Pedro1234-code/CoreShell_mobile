@@ -3,19 +3,18 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp rescap">
+  IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="78802a9b-ed2b-4fab-9087-538d29dfc1e1"
+    Name="dc833a66-5cd1-4cd8-a4c2-3f62fd9f4c2a"
     Publisher="CN=User"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="78802a9b-ed2b-4fab-9087-538d29dfc1e1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="dc833a66-5cd1-4cd8-a4c2-3f62fd9f4c2a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MobileOS_Update</DisplayName>
+    <DisplayName>PowerDialogRewrite</DisplayName>
     <PublisherDisplayName>User</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -31,14 +30,14 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="MobileOS_Update.App">
+      EntryPoint="PowerDialogRewrite.App">
       <uap:VisualElements
-        DisplayName="MobileOS_Update"
+        DisplayName="PowerDialogRewrite"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="MobileOS_Update"
+        Description="PowerDialogRewrite"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
@@ -46,9 +45,5 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
-    <uap:Capability Name="documentsLibrary" />
-    <rescap:Capability Name="packageQuery" />
-    <rescap:Capability Name="broadFileSystemAccess" />
-    <rescap:Capability Name="packageManagement" />
   </Capabilities>
 </Package>
