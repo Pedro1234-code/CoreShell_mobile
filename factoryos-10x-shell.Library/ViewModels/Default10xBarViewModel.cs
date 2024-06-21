@@ -170,7 +170,6 @@ namespace factoryos_10x_shell.Library.ViewModels
                     case InternetConnection.Wired:
                         statusBackgroundBuf = "\uE839";
                         statusTextBuf = "\uE839";
-                        OnPropertyChanged(nameof(NetworkStatusMargin));
                         break;
                     case InternetConnection.Wireless:
                         statusBackgroundBuf = "\uE701";
