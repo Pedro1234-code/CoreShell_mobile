@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Windows.Devices.Power;
 using Windows.UI.Core;
 using System.Linq;
+using factoryos_10x_shell.Services.Navigation;
+using factoryos_10x_shell.Library.Services.Navigation;
 
 
 namespace factoryos_10x_shell.Views
@@ -37,11 +39,6 @@ namespace factoryos_10x_shell.Views
         private void TaskViewButton_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void PowerButton_Click(object sender, RoutedEventArgs e)
-        {
-            Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
         }
 
         private async void CopilotButton_Click(object sender, RoutedEventArgs e)

@@ -40,9 +40,7 @@ namespace factoryos_10x_shell.Services.Helpers
             }
 
             IsDialogOpen = true;
-            LockDialog dialog = new LockDialog();
 
-            await dialog.ShowAsync();
             IsDialogOpen = false;
         }
 
@@ -54,9 +52,7 @@ namespace factoryos_10x_shell.Services.Helpers
             }
 
             IsDialogOpen = true;
-            DebugMenu dialog = new DebugMenu();
 
-            await dialog.ShowAsync();
             IsDialogOpen = false;
         }
     }

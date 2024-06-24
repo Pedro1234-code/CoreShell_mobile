@@ -21,6 +21,7 @@ using Windows.UI;
 using CommunityToolkit.Mvvm.Input;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
+using factoryos_10x_shell.Library.Services.Navigation;
 
 
 namespace factoryos_10x_shell.Library.ViewModels
@@ -247,6 +248,12 @@ namespace factoryos_10x_shell.Library.ViewModels
         private async void ActionCenterButtonClicked()
         {
             await Launcher.LaunchUriAsync(new Uri("ms-actioncenter:"));
+        }
+
+        [RelayCommand]
+        private async void PowerButtonClicked()
+        {
+           await Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
         }
 
         [RelayCommand]

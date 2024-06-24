@@ -186,7 +186,7 @@
                 Width="75"
                 Height="50"
                 Padding="0"
-                Click="PowerButton_Click"
+                Command="{x:Bind Mode=OneWay, Path=ViewModel.PowerButtonClickedCommand}"
                 Style="{StaticResource TaskbarButtonStyle}">
                 <Button.Content>
                     <TextBlock
@@ -262,15 +262,5 @@
                 </Grid>
             </Button>
         </StackPanel>
-        <TextBlock
-            x:Name="batteryStatusText"
-            Width="158"
-            Height="51"
-            Margin="1483,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Text="{x:Bind Mode=OneWay, Path=ViewModel.BatteryStatusCharacter}"
-            TextWrapping="Wrap" />
-
     </Grid>
 </Page>
