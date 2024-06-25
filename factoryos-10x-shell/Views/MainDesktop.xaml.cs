@@ -64,24 +64,6 @@ namespace factoryos_10x_shell.Views
 
             App.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Sounds/BootUp.wav"));
             App.MediaPlayer.Play();
-            string wallpaperPath = WallpaperHelper.GetDesktopWallpaper();
-            BitmapImage bitmapImage = new BitmapImage(new Uri(wallpaperPath));
-            BackgroundWallpaper.Source = bitmapImage;
-        }
-
-        class WallpaperHelper
-        {
-            [DllImport("user32.dll", CharSet = CharSet.Auto)]
-            private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-
-            private const int SPI_GETDESKWALLPAPER = 0x0073;
-
-            public static string GetDesktopWallpaper()
-            {
-                string wallpaper = new string('\0', 256);
-                SystemParametersInfo(SPI_GETDESKWALLPAPER, wallpaper.Length, wallpaper, 0);
-                return wallpaper.Substring(0, wallpaper.IndexOf('\0'));
-            }
         }
 
 
