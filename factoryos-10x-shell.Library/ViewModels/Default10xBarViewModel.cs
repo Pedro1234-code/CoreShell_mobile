@@ -173,12 +173,18 @@ namespace factoryos_10x_shell.Library.ViewModels
                         statusTextBuf = "\uE839";
                         break;
                     case InternetConnection.Wireless:
-                        statusBackgroundBuf = "\uE701";
-                        statusTextBuf = IconConstants.WiFiIcons[m_netService.SignalStrength];
+                        if (m_netService.SignalStrength < IconConstants.WiFiIcons.Length)
+                        {
+                            statusBackgroundBuf = "\uE701";
+                            statusTextBuf = IconConstants.WiFiIcons[m_netService.SignalStrength];
+                        }
                         break;
                     case InternetConnection.Data:
-                        statusBackgroundBuf = "\uEC3B";
-                        statusTextBuf = IconConstants.DataIcons[m_netService.SignalStrength];
+                        if (m_netService.SignalStrength < IconConstants.DataIcons.Length)
+                        {
+                            statusBackgroundBuf = "\uEC3B";
+                            statusTextBuf = IconConstants.DataIcons[m_netService.SignalStrength];
+                        }
                         break;
                     case InternetConnection.Unknown:
                     default:
