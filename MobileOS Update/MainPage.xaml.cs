@@ -42,11 +42,9 @@ namespace MobileOS_Update
                         // Server version is higher, proceed with download
                         DownloadProgressBar.Visibility = Visibility.Visible;
                         UpdateVerify.Visibility = Visibility.Collapsed;
-                        MainText.Visibility = Visibility.Collapsed;
                         await DownloadAndSaveUpdateAsync();
                         DownloadProgressBar.Visibility = Visibility.Collapsed;
                         UpdateVerify.Visibility = Visibility.Visible;
-                        MainText.Visibility= Visibility.Visible;
                     }
                     else
                     {
