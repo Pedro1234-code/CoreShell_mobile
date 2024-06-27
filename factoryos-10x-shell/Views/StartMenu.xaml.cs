@@ -50,10 +50,5 @@ namespace factoryos_10x_shell.Views
                 await (model.Data as AppListEntry).LaunchAsync();
             }
         }
-
-        private void ShutdownStart_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

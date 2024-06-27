@@ -208,5 +208,10 @@ namespace MobileOS_Update
                 return null;
             }
         }
+
+        private void TextBlock_SelectionChanged()
+        {
+
+        }
     }
 }
