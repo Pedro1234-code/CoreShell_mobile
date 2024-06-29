@@ -12,7 +12,7 @@
   <Identity
     Name="MobileOSDev.CoreShell"
     Publisher="CN=70CF1695-06B3-4B57-8DCD-3788C28AED2F"
-    Version="1.0.17.0" />
+    Version="1.0.18.0" />
 
   <mp:PhoneIdentity PhoneProductId="27a684a3-fafc-4a41-a89d-7fd468179a57" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

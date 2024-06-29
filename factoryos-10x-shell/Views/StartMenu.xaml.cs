@@ -49,6 +49,10 @@ namespace factoryos_10x_shell.Views
             {
                 await (model.Data as AppListEntry).LaunchAsync();
             }
+
+            IList<AppDiagnosticInfo> infos = await AppDiagnosticInfo.RequestInfoForAppAsync();
+            IList<AppResourceGroupInfo> resourceInfos = infos[0].GetResourceGroups();
+            await resourceInfos[0].StartSuspendAsync();
         }
     }
 }
