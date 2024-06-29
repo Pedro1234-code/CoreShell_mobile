@@ -26,26 +26,26 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Click="UpdateVerify_Click"
-            Content="Install or update"
+            Content="Check for updates"
             FontSize="20" />
 
 
         <TextBlock
-            Width="299"
+            Width="175"
             Margin="0,103,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontFamily="Sans Serif Collection"
             FontSize="20"
-            TextWrapping="Wrap"><Run Text="Installer and updater" /><Run Text=" application" /></TextBlock>
+            TextWrapping="Wrap"><Run Text="Update applicatio" /><Run Text="n" /></TextBlock>
         <TextBlock
             Width="366"
-            Height="214"
+            Height="120"
             Margin="16,0,0,10"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             FontSize="16"
-            TextWrapping="Wrap"><Run Text="About this project" /><LineBreak /><Run /><LineBreak /><Run Text="Windows MobileOS tries to improve Windows on mobile devices, by developing apps and tweaks to make it more usable on small screens." /><LineBreak /><Run /><LineBreak /><Run Text="Note: this app does not check for updates automatically. Please, check the website to see if an update" /><Run Text=" is available." /><LineBreak /><Run /><LineBreak /><Run /><LineBreak /><Run /><LineBreak /><Run /></TextBlock>
+            TextWrapping="Wrap"><Run Text="About this project" /><LineBreak /><Run /><LineBreak /><Run Text="Windows MobileOS tries to improve Windows on mobile devices, by developing apps and tweaks to make it more usable on small screens." /><LineBreak /><LineBreak /><Run /><LineBreak /><Run /><LineBreak /><Run /><LineBreak /><Run /></TextBlock>
         <ProgressBar
             x:Name="DownloadProgressBar"
             Width="358"

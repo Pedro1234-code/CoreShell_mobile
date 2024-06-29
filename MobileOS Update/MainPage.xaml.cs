@@ -1,6 +1,7 @@
 ﻿using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,7 +17,7 @@ namespace MobileOS_Update
 {
     public sealed partial class MainPage : Page
     {
-        private const string CurrentVersion = "20724"; // Set your current version here
+        private const string CurrentVersion = "20800"; // Set your current version here
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
         private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
@@ -48,7 +50,7 @@ namespace MobileOS_Update
                     }
                     else
                     {
-                        // no update
+                        await new MessageDialog("No updates available", "No updates. Check later.").ShowAsync();
                     }
                 }
                 else
@@ -130,6 +132,9 @@ namespace MobileOS_Update
 
         private async Task ExtractAndInstallPackagesAsync(StorageFile zipFile, StorageFolder destinationFolder)
         {
+            List<StorageFile> nonMobileOSPackages = new List<StorageFile>();
+            StorageFile mobileOSPackage = null;
+
             try
             {
                 using (Stream zipStream = await zipFile.OpenStreamForReadAsync())
@@ -151,12 +156,32 @@ namespace MobileOS_Update
                             StreamUtils.Copy(zipEntryStream, outputStream, buffer);
                         }
 
+                        // Check if the entry is an appx or msix package
                         if (entryFileName.EndsWith(".msix", StringComparison.OrdinalIgnoreCase) ||
                             entryFileName.EndsWith(".msixbundle", StringComparison.OrdinalIgnoreCase))
                         {
-                            await InstallPackageAsync(outputFile);
+                            if (entryFileName.StartsWith("MobileOS", StringComparison.OrdinalIgnoreCase))
+                            {
+                                mobileOSPackage = outputFile;
+                            }
+                            else
+                            {
+                                nonMobileOSPackages.Add(outputFile);
+                            }
                         }
                     }
+                }
+
+                // Install non-MobileOS packages first
+                foreach (var package in nonMobileOSPackages)
+                {
+                    await InstallPackageAsync(package);
+                }
+
+                // Install MobileOS package last
+                if (mobileOSPackage != null)
+                {
+                    await InstallPackageAsync(mobileOSPackage);
                 }
             }
             catch (Exception ex)
@@ -207,11 +232,6 @@ namespace MobileOS_Update
                 // Handle exceptions (e.g., network issues)
                 return null;
             }
-        }
-
-        private void TextBlock_SelectionChanged()
-        {
-
         }
     }
 }
