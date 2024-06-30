@@ -27,7 +27,7 @@
     <AppxBundlePlatforms>arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateThumbprint>08E90654E3E63FAFCEDFA5AB7E73BF1F914FF839</PackageCertificateThumbprint>
-    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Services\Hardware\BluetoothService.cs" />
     <Compile Include="Services\Managers\ActionCenterManagerService.cs" />
+    <Compile Include="Services\Managers\NotificationManager.cs" />
     <Compile Include="Views\Default10xBar.xaml.cs">
       <DependentUpon>Default10xBar.xaml</DependentUpon>
     </Compile>
@@ -170,7 +171,6 @@
     <Compile Include="Services\Hardware\BatteryService.cs" />
     <Compile Include="Services\Hardware\NetworkService.cs" />
     <Compile Include="Services\Helpers\AppHelper.cs" />
-    <Compile Include="Services\Managers\NotificationManager.cs" />
     <Compile Include="Services\Managers\PinManagerService.cs" />
     <Compile Include="Services\Managers\StartManagerService.cs" />
     <Compile Include="Services\Navigation\DesktopNavigator.cs" />

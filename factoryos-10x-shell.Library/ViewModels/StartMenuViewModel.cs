@@ -59,7 +59,7 @@ namespace factoryos_10x_shell.Library.ViewModels
         }
 
         [RelayCommand]
-        public async Task TextBoxSearchClickedAsync()
+        public void TextBoxSearchClicked()
         {
             InputInjector inputInjector = InputInjector.TryCreate();
 
