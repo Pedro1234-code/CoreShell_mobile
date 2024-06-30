@@ -251,19 +251,42 @@ namespace factoryos_10x_shell.Library.ViewModels
 
 
         [RelayCommand]
-        private async void ActionCenterButtonClicked()
+        private void ActionCenterButtonClicked()
         {
-            await Launcher.LaunchUriAsync(new Uri("ms-actioncenter:"));
+            // Create an instance of InputInjector
+            InputInjector inputInjector = InputInjector.TryCreate();
+
+            // Create an instance for the 'A' key
+            InjectedInputKeyboardInfo tabKey = new InjectedInputKeyboardInfo();
+            tabKey.VirtualKey = (ushort)(VirtualKey.A);
+            tabKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Create an instance for the 'Windows' key
+            InjectedInputKeyboardInfo winKey = new InjectedInputKeyboardInfo();
+            winKey.VirtualKey = (ushort)(VirtualKey.LeftWindows);
+            winKey.KeyOptions = InjectedInputKeyOptions.None;
+
+            // Inject the 'Windows' key down
+            inputInjector.InjectKeyboardInput(new[] { winKey });
+
+            // Inject the 'Tab' key down and up
+            inputInjector.InjectKeyboardInput(new[] { tabKey });
+            tabKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { tabKey });
+
+            // Inject the 'Windows' key up
+            winKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+            inputInjector.InjectKeyboardInput(new[] { winKey });
         }
 
         [RelayCommand]
-        private async void PowerButtonClicked()
+        private async Task PowerButtonClicked()
         {
            await Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
         }
 
         [RelayCommand]
-        private async Task TaskViewButtonClicked()
+        private void TaskViewButtonClicked()
         {
             // Create an instance of InputInjector
             InputInjector inputInjector = InputInjector.TryCreate();
