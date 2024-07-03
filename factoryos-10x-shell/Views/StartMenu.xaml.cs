@@ -47,9 +47,11 @@ namespace factoryos_10x_shell.Views
             StartIconModel model = ((FrameworkElement)sender).DataContext as StartIconModel;
             if (model != null)
             {
+                // suspend app
                 IList<AppDiagnosticInfo> infos = await AppDiagnosticInfo.RequestInfoForAppAsync();
                 IList<AppResourceGroupInfo> resourceInfos = infos[0].GetResourceGroups();
-                await resourceInfos[0].StartSuspendAsync();
+                resourceInfos[0].StartSuspendAsync();
+                // launch app
                 await (model.Data as AppListEntry).LaunchAsync();
 
             }

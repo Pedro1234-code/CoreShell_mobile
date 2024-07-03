@@ -9,11 +9,13 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
+using Microsoft.Win32;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.Media.Playback;
 using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.System;
@@ -24,7 +26,8 @@ using System.Runtime.InteropServices;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.System.UserProfile;
-using Windows.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace factoryos_10x_shell.Views
 {
@@ -65,8 +68,6 @@ namespace factoryos_10x_shell.Views
             App.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Sounds/BootUp.wav"));
             App.MediaPlayer.Play();
         }
-
-
 
         private void OnPointerPressed(object sender, PointerRoutedEventArgs args)
         {

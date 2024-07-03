@@ -17,7 +17,7 @@ namespace MobileOS_Update
 {
     public sealed partial class MainPage : Page
     {
-        private const string CurrentVersion = "20800"; // Set your current version here
+        private const string CurrentVersion = "20811"; 
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
         private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
@@ -55,14 +55,12 @@ namespace MobileOS_Update
                 }
                 else
                 {
-                    // Invalid version format in the server info
-                    // Handle this case (e.g., log an error)
+
                 }
             }
             else
             {
-                // Error downloading version info
-                // Handle this case (e.g., show an error message)
+
             }
         }
 

@@ -18,7 +18,7 @@
         <Image
             x:Name="BackgroundWallpaper"
             Grid.Row="0"
-            Source="ms-appx:///Assets/10x.png"
+            Source="ms-appx:///10x.png"
             Stretch="UniformToFill" />
         <Frame
             x:Name="StartMenuFrame"
