@@ -43,7 +43,6 @@ namespace CopilotPWA
         {
             await CopilotLoader.EnsureCoreWebView2Async();
             CopilotLoader.CoreWebView2.Settings.UserAgent = "Mozilla/5.0 (Linux; Android 12; moto g(60) Build/S2RI32.32-20-9-9-2; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Mobile Safari/537.36 EdgA/121.0.2277.138";
-            await CopilotLoader.CoreWebView2.ExecuteScriptAsync("location.reload();");
         }
     }
 }
