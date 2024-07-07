@@ -19,7 +19,7 @@
             x:Name="BackgroundWallpaper"
             Grid.Row="0"
             Source="ms-appx:///10x.png"
-            Stretch="UniformToFill" />
+            Stretch="Fill" />
         <Frame
             x:Name="StartMenuFrame"
             MaxWidth="810"
@@ -50,5 +50,21 @@
             x:Name="TaskbarFrame"
             MaxHeight="50"
             VerticalAlignment="Bottom" />
+        <Button
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Click="BgChangebutton">
+            <Button.Content>
+                <TextBlock
+                    Margin="0,-4,0,0"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20"
+                    Text="&#xE771;" />
+
+            </Button.Content>
+
+        </Button>
     </Grid>
 </Page>

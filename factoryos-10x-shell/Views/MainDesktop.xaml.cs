@@ -26,8 +26,9 @@ using System.Runtime.InteropServices;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.System.UserProfile;
-using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
+using System.Threading.Tasks;
 
 namespace factoryos_10x_shell.Views
 {
@@ -93,6 +94,33 @@ namespace factoryos_10x_shell.Views
                 }
             }
         }
+
+        private async void BgChangebutton(object sender, RoutedEventArgs e)
+        {
+            // Create a file picker
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+
+            // Let the user pick a file
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                // Ensure the file is not null before proceeding
+                var bitmapImage = new BitmapImage();
+                using (var stream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    await bitmapImage.SetSourceAsync(stream);
+                }
+
+                // Set the selected image as the source of the BackgroundWallpaper image
+                BackgroundWallpaper.Source = bitmapImage;
+            }
+        }
+
 
         public MainDesktopViewModel ViewModel => (MainDesktopViewModel)this.DataContext;
 
