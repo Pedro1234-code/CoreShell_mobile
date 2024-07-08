@@ -88,17 +88,6 @@ namespace factoryos_10x_shell
                 Window.Current.Activate();
             }
 
-            _session = new ExtendedExecutionSession
-            {
-                Reason = ExtendedExecutionReason.Unspecified
-            };
-            _session.Revoked += Session_Revoked;
-            var result = await _session.RequestExtensionAsync();
-            if (result == ExtendedExecutionResult.Allowed)
-            {
-                // The session was allowed.
-            }
-
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             var view = ApplicationView.GetForCurrentView();
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;

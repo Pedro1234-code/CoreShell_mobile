@@ -180,6 +180,14 @@
                             Opacity="0"
                             Text="Recent" />
 
+                        <Button
+                            Width="95"
+                            Height="30"
+                            Padding="0"
+                            Click="RefreshButton_click"
+                            Content="Refresh Apps" />
+
+
                     </Grid>
                 </StackPanel>
             </ScrollViewer>

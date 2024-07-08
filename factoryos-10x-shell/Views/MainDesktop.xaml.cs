@@ -55,6 +55,8 @@ namespace factoryos_10x_shell.Views
             m_actionManager = App.ServiceProvider.GetRequiredService<IActionCenterManagerService>();
             m_actionManager.ActionVisibilityChanged += ActionCenterManager_ActionVisibilityChanged;
 
+            LoadBackgroundImage();
+
             this.PointerPressed += OnPointerPressed;
 
             TaskbarFrame.Navigate(typeof(Default10xBar));
@@ -69,6 +71,30 @@ namespace factoryos_10x_shell.Views
             App.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Sounds/BootUp.wav"));
             App.MediaPlayer.Play();
         }
+
+        private async void LoadBackgroundImage()
+        {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey("backgroundImagePath"))
+            {
+                string imagePath = localSettings.Values["backgroundImagePath"].ToString();
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    var file = await StorageFile.GetFileFromPathAsync(imagePath);
+                    if (file != null)
+                    {
+                        var bitmapImage = new BitmapImage();
+                        using (var stream = await file.OpenAsync(FileAccessMode.Read))
+                        {
+                            await bitmapImage.SetSourceAsync(stream);
+                        }
+                        BackgroundWallpaper.Source = bitmapImage;
+                    }
+                }
+            }
+        }
+
+        public Image BackgroundWallpaperControl => BackgroundWallpaper;
 
         private void OnPointerPressed(object sender, PointerRoutedEventArgs args)
         {
@@ -95,6 +121,8 @@ namespace factoryos_10x_shell.Views
             }
         }
 
+
+
         private async void BgChangebutton(object sender, RoutedEventArgs e)
         {
             // Create a file picker
@@ -109,14 +137,16 @@ namespace factoryos_10x_shell.Views
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
-                // Ensure the file is not null before proceeding
+                // Save the file path to local settings
+                Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                localSettings.Values["backgroundImagePath"] = file.Path;
+
+                // Set the selected image as the source of the BackgroundWallpaper image
                 var bitmapImage = new BitmapImage();
                 using (var stream = await file.OpenAsync(FileAccessMode.Read))
                 {
                     await bitmapImage.SetSourceAsync(stream);
                 }
-
-                // Set the selected image as the source of the BackgroundWallpaper image
                 BackgroundWallpaper.Source = bitmapImage;
             }
         }

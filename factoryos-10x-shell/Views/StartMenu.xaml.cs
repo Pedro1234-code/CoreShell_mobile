@@ -56,5 +56,10 @@ namespace factoryos_10x_shell.Views
 
             }
         }
+
+        private void RefreshButton_click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

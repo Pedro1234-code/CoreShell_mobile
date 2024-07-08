@@ -14,7 +14,7 @@
         <QuadraticEase x:Key="QuadraticEaseInOut" EasingMode="EaseInOut" />
     </Page.Resources>
 
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Image
             x:Name="BackgroundWallpaper"
             Grid.Row="0"
