@@ -53,7 +53,6 @@ namespace factoryos_10x_shell
             MediaPlayer = BackgroundMediaPlayer.Current;
         }
 
-        private ExtendedExecutionSession _session; // Declaração da variável no nível da classe
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             ConfigureServices();
@@ -93,11 +92,7 @@ namespace factoryos_10x_shell
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
         }
 
-        private void Session_Revoked(object sender, ExtendedExecutionRevokedEventArgs args)
-        {
-            // Handle the session being revoked here
-            _session.Dispose();
-        }
+
 
 
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)

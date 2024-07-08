@@ -28,6 +28,7 @@ using Microsoft.Extensions.DependencyInjection;
 using factoryos_10x_shell.Library.ViewModels;
 using factoryos_10x_shell.Library.Models.InternalData;
 using Windows.ApplicationModel.Core;
+using factoryos_10x_shell.Library.Services.Helpers;
 
 namespace factoryos_10x_shell.Views
 {
@@ -50,16 +51,16 @@ namespace factoryos_10x_shell.Views
                 // suspend app
                 IList<AppDiagnosticInfo> infos = await AppDiagnosticInfo.RequestInfoForAppAsync();
                 IList<AppResourceGroupInfo> resourceInfos = infos[0].GetResourceGroups();
-                resourceInfos[0].StartSuspendAsync();
+                await resourceInfos[0].StartSuspendAsync();
                 // launch app
                 await (model.Data as AppListEntry).LaunchAsync();
 
             }
         }
 
-        private void RefreshButton_click(object sender, RoutedEventArgs e)
+        private async void RefreshButton_click(object sender, RoutedEventArgs e)
         {
-
+            await ViewModel.RefreshAppsAsync();
         }
     }
 }

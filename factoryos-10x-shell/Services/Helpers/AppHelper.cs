@@ -44,6 +44,7 @@ namespace factoryos_10x_shell.Services.Helpers
         {
             try
             {
+                _iconCache.Clear(); // Clear the cache before reloading
                 PackageManager packageManager = new PackageManager();
                 IEnumerable<Package> packages = packageManager.FindPackagesForUser("");
 
@@ -59,10 +60,7 @@ namespace factoryos_10x_shell.Services.Helpers
                             IReadOnlyList<AppListEntry> entries = package.GetAppListEntries();
                             foreach (AppListEntry entry in entries)
                             {
-
-                                logoData = null;
                                 logoData = package.GetLogoAsRandomAccessStreamReference(_logoSize);
-
                                 IRandomAccessStreamWithContentType stream = await logoData.OpenReadAsync();
                                 BitmapImage bitmapImage = new BitmapImage();
                                 await bitmapImage.SetSourceAsync(stream);
@@ -77,14 +75,12 @@ namespace factoryos_10x_shell.Services.Helpers
                 }
 
                 StartIcons = new ObservableCollection<StartIconModel>(_iconCache.OrderBy(icon => icon.IconName));
-                _iconCache = null;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("LoadApps => Get: " + ex.Message);
             }
         }
-
         public Package PackageFromAumid(string aumid)
         {
             string[] aumidParts = aumid.Split('!');
