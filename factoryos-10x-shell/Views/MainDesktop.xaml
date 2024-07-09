@@ -19,7 +19,7 @@
             x:Name="BackgroundWallpaper"
             Grid.Row="0"
             Source="ms-appx:///10x.png"
-            Stretch="Fill" />
+            Stretch="UniformToFill" />
         <Frame
             x:Name="StartMenuFrame"
             MaxWidth="810"

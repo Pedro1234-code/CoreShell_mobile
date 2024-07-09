@@ -17,7 +17,7 @@ namespace MobileOS_Update
 {
     public sealed partial class MainPage : Page
     {
-        private const string CurrentVersion = "20811"; 
+        private const string CurrentVersion = "20836"; 
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
         private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
@@ -125,6 +125,8 @@ namespace MobileOS_Update
             catch (Exception ex)
             {
                 // Handle exceptions (e.g., network issues)
+                await new MessageDialog("Connection not found.", "Please check your internet connection.").ShowAsync();
+
             }
         }
 
@@ -203,7 +205,8 @@ namespace MobileOS_Update
             }
             catch (Exception ex)
             {
-                // Handle installation errors
+                await new MessageDialog("Installation has been partially completed.", "Installation was partially completed. If you get any issues, please report.").ShowAsync();
+
             }
         }
 

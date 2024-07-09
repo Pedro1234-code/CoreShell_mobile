@@ -181,20 +181,6 @@
             x:Name="RightControls"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Button
-                x:Name="PowerButton"
-                Width="75"
-                Height="50"
-                Padding="0"
-                Command="{x:Bind Mode=OneWay, Path=ViewModel.PowerButtonClickedCommand}"
-                Style="{StaticResource TaskbarButtonStyle}">
-                <Button.Content>
-                    <TextBlock
-                        FontFamily="Segoe MDL2 Assets"
-                        FontSize="20"
-                        Text="&#xE7E8;" />
-                </Button.Content>
-            </Button>
 
             <Button
                 x:Name="ActionCenterButton"

@@ -29,6 +29,8 @@ using factoryos_10x_shell.Library.ViewModels;
 using factoryos_10x_shell.Library.Models.InternalData;
 using Windows.ApplicationModel.Core;
 using factoryos_10x_shell.Library.Services.Helpers;
+using System.Threading.Tasks;
+using Windows.UI.Input.Preview.Injection;
 
 namespace factoryos_10x_shell.Views
 {
@@ -43,15 +45,37 @@ namespace factoryos_10x_shell.Views
 
         public StartMenuViewModel ViewModel => (StartMenuViewModel)this.DataContext;
 
+
         private async void AppButton_Click(object sender, RoutedEventArgs e)
         {
             StartIconModel model = ((FrameworkElement)sender).DataContext as StartIconModel;
             if (model != null)
             {
                 // suspend app
-                IList<AppDiagnosticInfo> infos = await AppDiagnosticInfo.RequestInfoForAppAsync();
-                IList<AppResourceGroupInfo> resourceInfos = infos[0].GetResourceGroups();
-                await resourceInfos[0].StartSuspendAsync();
+                InputInjector inputInjector = InputInjector.TryCreate();
+
+                // Create an instance for the 'Down' key
+                InjectedInputKeyboardInfo tabKey = new InjectedInputKeyboardInfo();
+                tabKey.VirtualKey = (ushort)(VirtualKey.Down);
+                tabKey.KeyOptions = InjectedInputKeyOptions.None;
+
+                // Create an instance for the 'Windows' key
+                InjectedInputKeyboardInfo winKey = new InjectedInputKeyboardInfo();
+                winKey.VirtualKey = (ushort)(VirtualKey.LeftWindows);
+                winKey.KeyOptions = InjectedInputKeyOptions.None;
+
+                // Inject the 'Windows' key down
+                inputInjector.InjectKeyboardInput(new[] { winKey });
+
+                // Inject the 'Tab' key down and up
+                inputInjector.InjectKeyboardInput(new[] { tabKey });
+                tabKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+                inputInjector.InjectKeyboardInput(new[] { tabKey });
+
+                // Inject the 'Windows' key up
+                winKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
+                inputInjector.InjectKeyboardInput(new[] { winKey });
+
                 // launch app
                 await (model.Data as AppListEntry).LaunchAsync();
 
@@ -62,5 +86,11 @@ namespace factoryos_10x_shell.Views
         {
             await ViewModel.RefreshAppsAsync();
         }
+
+        private async void PowerButton_click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
+        }
+
     }
 }

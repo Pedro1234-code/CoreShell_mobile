@@ -10,7 +10,7 @@
   <Identity
     Name="MobileOSdev.CopilotPWA"
     Publisher="CN=70CF1695-06B3-4B57-8DCD-3788C28AED2F"
-    Version="1.0.5.0" />
+    Version="1.0.6.0" />
 
   <mp:PhoneIdentity PhoneProductId="a16a7e66-8c99-402a-83f9-933fe6b592d5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

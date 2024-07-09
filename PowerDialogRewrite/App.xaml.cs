@@ -96,6 +96,10 @@ namespace PowerDialogRewrite
                 }
                 Window.Current.Activate();
             }
+
+            var view = ApplicationView.GetForCurrentView();
+            view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
+
         }
 
         /// <summary>

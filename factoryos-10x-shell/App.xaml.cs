@@ -92,7 +92,43 @@ namespace factoryos_10x_shell
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
         }
 
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                var protocolArgs = args as ProtocolActivatedEventArgs;
 
+                // Check if the app is already running
+                if (Window.Current.Content == null)
+                {
+                    // The app is not running, close the app and launch again
+
+                    var packageFamilyName = "MobileOSDev.CoreShell_d7x680j9yw8bm";
+                    var pm = new Windows.Management.Deployment.PackageManager();
+                    var packages = pm.FindPackagesForUser(string.Empty, packageFamilyName);
+
+                    var foundPackage = packages.FirstOrDefault();
+                    if (foundPackage != null)
+                    {
+                        var appListEntries = await foundPackage.GetAppListEntriesAsync();
+                        var entry = appListEntries.FirstOrDefault();
+                        if (entry != null)
+                        {
+                            bool success = await entry.LaunchAsync();
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    // The app is running, bring it to the foreground
+                    Window.Current.Activate();
+                }
+
+                Window.Current.Activate();
+            }
+        }
 
 
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)

@@ -280,12 +280,6 @@ namespace factoryos_10x_shell.Library.ViewModels
         }
 
         [RelayCommand]
-        private async Task PowerButtonClicked()
-        {
-           await Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
-        }
-
-        [RelayCommand]
         private void TaskViewButtonClicked()
         {
             // Create an instance of InputInjector
