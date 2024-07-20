@@ -50,7 +50,6 @@ namespace factoryos_10x_shell
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.Resuming += OnResuming;
-            MediaPlayer = BackgroundMediaPlayer.Current;
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)

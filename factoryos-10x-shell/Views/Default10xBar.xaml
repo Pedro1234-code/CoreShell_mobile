@@ -51,34 +51,16 @@
         Background="{ThemeResource TaskbarAcrylicBrush}">
 
         <Button
-            x:Name="TaskViewButton"
-            Width="75"
-            Height="50"
-            Padding="0"
-            Click="TaskViewButton_Click"
-            Command="{x:Bind Mode=OneWay, Path=ViewModel.TaskViewButtonClickedCommand}"
-            Style="{StaticResource TaskbarButtonStyle}"
-            ToolTipService.ToolTip="Task">
-            <Button.Content>
-                <Image
-                    Width="34"
-                    Height="32"
-                    Source="ms-appx:///taskview.png"
-                    Stretch="Uniform" />
-            </Button.Content>
-        </Button>
-        <Button
             x:Name="CopilotButton"
             Width="60"
             Height="50"
-            Margin="75,0,0,0"
             Padding="0"
             Click="CopilotButton_Click"
             Style="{StaticResource TaskbarButtonStyle}"
             ToolTipService.ToolTip="Copilot">
             <Image
-                Width="34"
-                Height="32"
+                Width="26"
+                Height="26"
                 Source="ms-appx:///Microsoft-Copilot.png" />
         </Button>
 
@@ -174,6 +156,42 @@
                         </Path>
                     </Canvas>
                 </Viewbox>
+            </Button>
+            <Button
+                x:Name="SearchButton"
+                Width="50"
+                Height="50"
+                Padding="13"
+                Command="{x:Bind Mode=OneWay, Path=ViewModel.SearchButtonClickedCommand}"
+                FontSize="18"
+                Style="{StaticResource TaskbarButtonStyle}"
+                ToolTipService.ToolTip="Search">
+                <Button.Content>
+                    <Image
+                        Width="25,4"
+                        Height="25,4"
+                        Source="ms-appx:///search.png"
+                        Stretch="Uniform" />
+                </Button.Content>
+            </Button>
+
+
+            <Button
+                x:Name="TaskViewButton"
+                Width="50"
+                Height="50"
+                Padding="13"
+                Click="TaskViewButton_Click"
+                Command="{x:Bind Mode=OneWay, Path=ViewModel.TaskViewButtonClickedCommand}"
+                Style="{StaticResource TaskbarButtonStyle}"
+                ToolTipService.ToolTip="Task">
+                <Button.Content>
+                    <Image
+                        Width="26"
+                        Height="26"
+                        Source="ms-appx:///taskview.png"
+                        Stretch="Uniform" />
+                </Button.Content>
             </Button>
 
         </StackPanel>

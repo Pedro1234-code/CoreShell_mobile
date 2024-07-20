@@ -10,6 +10,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <controls:WebView2 x:Name="CopilotLoader" Source="https://bing.com/chat" />
+        <controls:WebView2 x:Name="CopilotLoader" />
     </Grid>
 </Page>

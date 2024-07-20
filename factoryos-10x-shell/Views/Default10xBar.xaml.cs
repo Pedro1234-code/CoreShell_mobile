@@ -15,6 +15,8 @@ using Windows.UI.Core;
 using System.Linq;
 using factoryos_10x_shell.Services.Navigation;
 using factoryos_10x_shell.Library.Services.Navigation;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 
 namespace factoryos_10x_shell.Views
@@ -40,6 +42,7 @@ namespace factoryos_10x_shell.Views
         {
 
         }
+
 
         private async void CopilotButton_Click(object sender, RoutedEventArgs e)
         {

@@ -67,9 +67,6 @@ namespace factoryos_10x_shell.Views
 
             InitActionOpen();
             InitActionClose();
-
-            App.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Sounds/BootUp.wav"));
-            App.MediaPlayer.Play();
         }
 
         private async void LoadBackgroundImage()

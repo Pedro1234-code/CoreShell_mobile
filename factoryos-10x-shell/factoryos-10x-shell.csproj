@@ -136,7 +136,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BackgroundTask.cs" />
     <Compile Include="Controls\ActionCenterSegmentedToggle.xaml.cs">
       <DependentUpon>ActionCenterSegmentedToggle.xaml</DependentUpon>
     </Compile>
@@ -258,6 +257,9 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="taskview.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

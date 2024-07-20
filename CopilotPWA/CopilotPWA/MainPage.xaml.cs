@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -28,6 +30,15 @@ namespace CopilotPWA
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            StartWB();
+        }
+
+
+        private async void StartWB()
+        {
+            await CopilotLoader.EnsureCoreWebView2Async();
+            CopilotLoader.CoreWebView2.Settings.UserAgent = "Mozilla/5.0 (Linux; Android 12; moto g(60) Build/S2RI32.32-20-9-9-2; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Mobile Safari/537.36 EdgA/121.0.2277.138";
+            CopilotLoader.CoreWebView2.Navigate("https://bing.com/chat");
         }
         private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
         {
