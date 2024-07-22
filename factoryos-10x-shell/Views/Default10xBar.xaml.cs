@@ -17,6 +17,7 @@ using factoryos_10x_shell.Services.Navigation;
 using factoryos_10x_shell.Library.Services.Navigation;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.Xaml.Media.Imaging;
 
 
 namespace factoryos_10x_shell.Views
@@ -28,6 +29,16 @@ namespace factoryos_10x_shell.Views
             this.InitializeComponent();
 
             DataContext = App.ServiceProvider.GetRequiredService<Default10xBarViewModel>();
+
+            if (this.RequestedTheme == ElementTheme.Light)
+            {
+                taskviewcontent.Source = new BitmapImage(new Uri("ms-appx:///taskview.png"));
+            }
+            else
+            {
+                taskviewcontent.Source = new BitmapImage(new Uri("ms-appx:///taskviewColorWide.png"));
+            }
+
         }
 
 

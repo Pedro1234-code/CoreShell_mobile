@@ -187,6 +187,7 @@
                 ToolTipService.ToolTip="Task">
                 <Button.Content>
                     <Image
+                        x:Name="taskviewcontent"
                         Width="26"
                         Height="26"
                         Source="ms-appx:///taskview.png"

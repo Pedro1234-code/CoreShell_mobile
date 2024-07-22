@@ -14,14 +14,42 @@ namespace DesktopMode
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            ProcessStartInfo startInfo = new ProcessStartInfo("taskkill", "/f /im explorer.exe");
-            startInfo.CreateNoWindow = true;
-            startInfo.UseShellExecute = false;
+            KillProcess("factoryos-10x-shell");
+            KillProcess("MobileShellPlus");
+            KillProcess("explorer");
 
-            Process process = new Process();
-            process.StartInfo = startInfo;
-            process.Start();
+            // Restart explorer.exe
+            StartProcess("explorer.exe");
+        }
 
+        static void KillProcess(string processName)
+        {
+            foreach (var process in Process.GetProcessesByName(processName))
+            {
+                try
+                {
+                    process.Kill();
+                    process.WaitForExit();
+                    Console.WriteLine($"{processName} has been killed.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error killing {processName}: {ex.Message}");
+                }
+            }
+        }
+
+        static void StartProcess(string processName)
+        {
+            try
+            {
+                Process.Start(processName);
+                Console.WriteLine($"{processName} has been started.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error starting {processName}: {ex.Message}");
+            }
         }
     }
 }
