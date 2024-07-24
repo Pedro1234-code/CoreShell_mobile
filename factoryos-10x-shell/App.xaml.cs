@@ -37,6 +37,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Storage;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using factoryos_10x_shell.Services.Helpers;
 
 namespace factoryos_10x_shell
 {
@@ -50,6 +51,14 @@ namespace factoryos_10x_shell
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.Resuming += OnResuming;
+            if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("IsSearchButtonVisible"))
+            {
+                AppState.Instance.IsSearchButtonVisible = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["IsSearchButtonVisible"];
+            }
+            if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.ContainsKey("IsCopilotButtonVisible"))
+            {
+                AppState.Instance.IsCopilotButtonVisible = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["IsCopilotButtonVisible"];
+            }
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)

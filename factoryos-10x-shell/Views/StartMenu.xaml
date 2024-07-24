@@ -181,13 +181,6 @@
                             Text="Recent" />
 
                         <Button
-                            Width="95"
-                            Height="30"
-                            Padding="0"
-                            Click="RefreshButton_click"
-                            Content="Refresh Apps" />
-
-                        <Button
                             x:Name="PowerButton"
                             Width="75"
                             Height="50"
@@ -198,8 +191,24 @@
                             <Button.Content>
                                 <TextBlock
                                     FontFamily="Segoe MDL2 Assets"
-                                    FontSize="20"
+                                    FontSize="24"
                                     Text="&#xE7E8;" />
+                            </Button.Content>
+                        </Button>
+
+                        <Button
+                            x:Name="SettingsButton"
+                            Width="75"
+                            Height="50"
+                            Padding="0"
+                            HorizontalAlignment="Left"
+                            Click="SettingsButton_click"
+                            Style="{StaticResource TaskbarButtonStyle}">
+                            <Button.Content>
+                                <TextBlock
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="24"
+                                    Text="&#xE713;" />
                             </Button.Content>
                         </Button>
                     </Grid>

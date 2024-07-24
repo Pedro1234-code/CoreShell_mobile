@@ -18,6 +18,8 @@ using factoryos_10x_shell.Library.Services.Navigation;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using Windows.UI.Xaml.Media.Imaging;
+using factoryos_10x_shell.Services.Helpers;
+using System.Diagnostics;
 
 
 namespace factoryos_10x_shell.Views
@@ -29,16 +31,11 @@ namespace factoryos_10x_shell.Views
             this.InitializeComponent();
 
             DataContext = App.ServiceProvider.GetRequiredService<Default10xBarViewModel>();
+            AppState.Instance.OnSearchButtonVisibilityChanged += UpdateSearchButtonVisibility;
+            AppState.Instance.OnCopilotButtonVisibilityChanged += UpdateCopilotButtonVisibility; UpdateSearchButtonVisibility(AppState.Instance.IsSearchButtonVisible);
 
-            if (this.RequestedTheme == ElementTheme.Light)
-            {
-                taskviewcontent.Source = new BitmapImage(new Uri("ms-appx:///taskview.png"));
-            }
-            else
-            {
-                taskviewcontent.Source = new BitmapImage(new Uri("ms-appx:///taskviewColorWide.png"));
-            }
-
+            UpdateSearchButtonVisibility(AppState.Instance.IsSearchButtonVisible);
+            UpdateCopilotButtonVisibility(AppState.Instance.IsCopilotButtonVisible);
         }
 
 
@@ -54,6 +51,15 @@ namespace factoryos_10x_shell.Views
 
         }
 
+        private void UpdateSearchButtonVisibility(bool isVisible)
+        {
+            SearchButton.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void UpdateCopilotButtonVisibility(bool isVisible)
+        {
+            CopilotButton.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
 
         private async void CopilotButton_Click(object sender, RoutedEventArgs e)
         {

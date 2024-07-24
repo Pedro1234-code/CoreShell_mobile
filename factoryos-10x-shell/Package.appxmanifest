@@ -7,7 +7,8 @@
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp rescap uap3 uap5">
+  xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
+  IgnorableNamespaces="uap mp rescap uap3 uap5 uap4">
 
   <Identity
     Name="MobileOSDev.CoreShell"
@@ -61,12 +62,15 @@
     <Capability Name="internetClient" />
     <uap3:Capability Name="userNotificationListener"/>
     <rescap:Capability Name="packageQuery" />
+    <rescap:Capability Name="appDiagnostics" />
     <rescap:Capability Name="broadFileSystemAccess" />
     <rescap:Capability Name="packageManagement" />
     <rescap:Capability Name="fullTrust" />
     <rescap:Capability Name="userProfile" />
     <rescap:Capability Name="runFullTrust"/>
     <rescap:Capability Name="inputInjectionBrokered" />
+    <uap4:Capability Name="userDataTasks"/>
+    <uap:Capability Name="userAccountInformation"/>
     <DeviceCapability Name="bluetooth"/>
   </Capabilities>
 </Package>

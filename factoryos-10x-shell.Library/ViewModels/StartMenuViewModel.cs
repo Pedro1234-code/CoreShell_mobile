@@ -58,12 +58,6 @@ namespace factoryos_10x_shell.Library.ViewModels
             }
         }
 
-        public async Task RefreshAppsAsync()
-        {
-            await m_appHelper.LoadAppsAsync();
-            OnPropertyChanged(nameof(StartIcons)); // Notify that StartIcons has changed
-        }
-
         [RelayCommand]
         public void TextBoxSearchClicked()
         {

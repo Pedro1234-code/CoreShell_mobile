@@ -10,6 +10,7 @@ using Windows.Foundation.Collections;
 using Windows.Management.Deployment;
 using Windows.Networking.Proximity;
 using Windows.UI.Xaml;
+using System.Runtime.Serialization.Json;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -17,12 +18,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System.UserProfile;
+using Windows.Storage;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Media.Imaging;
 
 using static factoryos_10x_shell.Helpers.VisualHelper;
 using Windows.Storage.Streams;
 using static System.Net.Mime.MediaTypeNames;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.System;
 using Microsoft.Extensions.DependencyInjection;
 using factoryos_10x_shell.Library.ViewModels;
@@ -31,6 +33,8 @@ using Windows.ApplicationModel.Core;
 using factoryos_10x_shell.Library.Services.Helpers;
 using System.Threading.Tasks;
 using Windows.UI.Input.Preview.Injection;
+using factoryos_10x_shell.Services.Helpers;
+using factoryos_10x_shell.Library.Services.Managers;
 
 namespace factoryos_10x_shell.Views
 {
@@ -82,14 +86,15 @@ namespace factoryos_10x_shell.Views
             }
         }
 
-        private async void RefreshButton_click(object sender, RoutedEventArgs e)
-        {
-            await ViewModel.RefreshAppsAsync();
-        }
 
         private async void PowerButton_click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("powerdialogcomponent:"));
+        }
+
+        private void SettingsButton_click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Settings), null);
         }
 
     }
