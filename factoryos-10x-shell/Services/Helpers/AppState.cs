@@ -32,6 +32,21 @@ namespace factoryos_10x_shell.Services.Helpers
                 OnCopilotButtonVisibilityChanged?.Invoke(value);
             }
         }
+        private bool _isBgChangeButtonVisible;
+        public bool IsBgChangeButtonVisible
+        {
+            get => _isBgChangeButtonVisible;
+            set
+            {
+                if (_isBgChangeButtonVisible != value)
+                {
+                    _isBgChangeButtonVisible = value;
+                    OnBgChangeButtonVisibilityChanged?.Invoke(_isBgChangeButtonVisible);
+                }
+            }
+        }
+
+        public event Action<bool> OnBgChangeButtonVisibilityChanged;
 
         public event Action<bool> OnSearchButtonVisibilityChanged;
         public event Action<bool> OnCopilotButtonVisibilityChanged;

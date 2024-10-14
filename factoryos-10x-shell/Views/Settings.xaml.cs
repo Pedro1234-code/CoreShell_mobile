@@ -60,5 +60,17 @@ namespace factoryos_10x_shell
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["IsSearchButtonVisible"] = toggleSwitch.IsOn;
             }
         }
+
+        private void BG_Toggled(object sender, RoutedEventArgs e)
+        {
+            {
+                ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+                if (toggleSwitch != null)
+                {
+                    AppState.Instance.IsBgChangeButtonVisible = toggleSwitch.IsOn;
+                    Windows.Storage.ApplicationData.Current.LocalSettings.Values["IsBgChangeButtonVisible"] = toggleSwitch.IsOn;
+                }
+            }
+        }
     }
 }

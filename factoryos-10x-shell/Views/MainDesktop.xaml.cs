@@ -29,6 +29,7 @@ using Windows.System.UserProfile;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using System.Threading.Tasks;
+using factoryos_10x_shell.Services.Helpers;
 
 namespace factoryos_10x_shell.Views
 {
@@ -67,9 +68,19 @@ namespace factoryos_10x_shell.Views
 
             InitActionOpen();
             InitActionClose();
+
+
+            AppState.Instance.OnBgChangeButtonVisibilityChanged += UpdateBgChangeButtonVisibility;
+            UpdateBgChangeButtonVisibility(AppState.Instance.IsBgChangeButtonVisible);
         }
 
-        private async void LoadBackgroundImage()
+        private void UpdateBgChangeButtonVisibility(bool isVisible)
+        {
+            BgChangebutton.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+
+        }
+
+            private async void LoadBackgroundImage()
         {
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (localSettings.Values.ContainsKey("backgroundImagePath"))
@@ -120,7 +131,7 @@ namespace factoryos_10x_shell.Views
 
 
 
-        private async void BgChangebutton(object sender, RoutedEventArgs e)
+        private async void BgChangebutton_Click(object sender, RoutedEventArgs e)
         {
             // Create a file picker
             FileOpenPicker openPicker = new FileOpenPicker();

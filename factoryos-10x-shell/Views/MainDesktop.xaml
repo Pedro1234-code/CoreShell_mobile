@@ -51,11 +51,12 @@
             MaxHeight="50"
             VerticalAlignment="Bottom" />
         <Button
+            x:Name="BgChangebutton"
             Width="40"
             Height="40"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Click="BgChangebutton">
+            Click="BgChangebutton_Click">
             <Button.Content>
                 <TextBlock
                     Margin="0,-4,0,0"
