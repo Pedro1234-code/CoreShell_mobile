@@ -18,17 +18,30 @@
             Source="ms-appx:///458x72dark.png"
             Stretch="Uniform" />
 
-        <Button
-            x:Name="UpdateVerify"
-            Width="413"
-            Height="40"
-            Margin="0,232,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Click="UpdateVerify_Click"
-            Content="Check for updates"
-            FontSize="20" />
 
+        <StackPanel HorizontalAlignment="Center">
+            <Button
+                x:Name="UpdateVerify"
+                Width="413"
+                Height="40"
+                Margin="0,232,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Click="UpdateVerify_Click"
+                Content="Check for updates"
+                FontSize="20" />
+
+            <TextBlock />
+
+            <Button
+                x:Name="InstallMOS"
+                Width="413"
+                Height="40"
+                Click="InstallMOS_Click"
+                Content="Install MobileOS base package"
+                FontSize="20" />
+
+        </StackPanel>
 
         <TextBlock
             Width="175"

@@ -32,6 +32,8 @@ namespace factoryos_10x_shell.Services.Helpers
                 OnCopilotButtonVisibilityChanged?.Invoke(value);
             }
         }
+
+
         private bool _isBgChangeButtonVisible;
         public bool IsBgChangeButtonVisible
         {
@@ -45,6 +47,7 @@ namespace factoryos_10x_shell.Services.Helpers
                 }
             }
         }
+
 
         public event Action<bool> OnBgChangeButtonVisibilityChanged;
 

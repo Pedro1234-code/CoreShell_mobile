@@ -37,6 +37,7 @@
                 Toggled="CopilotSwitch_Toggled" />
             <ToggleSwitch Header="Search button" Toggled="Search_Toggled" />
             <ToggleSwitch Header="Background button" Toggled="BG_Toggled" />
+
         </StackPanel>
 
 

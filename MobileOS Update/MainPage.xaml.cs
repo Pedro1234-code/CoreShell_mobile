@@ -17,7 +17,7 @@ namespace MobileOS_Update
 {
     public sealed partial class MainPage : Page
     {
-        private const string CurrentVersion = "20842"; 
+        private const string CurrentVersion = "20843"; 
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
         private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
@@ -232,6 +232,91 @@ namespace MobileOS_Update
             {
                 // Handle exceptions (e.g., network issues)
                 return null;
+            }
+        }
+
+
+        private async void InstallMOS_Click(object sender, RoutedEventArgs e)
+        {
+            DownloadProgressBar.Visibility = Visibility.Visible;
+            UpdateVerify.IsEnabled = false;
+            InstallMOS.IsEnabled = false; 
+
+            // Set the download link for the zip file here
+            string zipFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/base.zip";
+
+            // Use FolderPicker to let the user choose the save location
+            FolderPicker folderPicker = new FolderPicker
+            {
+                SuggestedStartLocation = PickerLocationId.Downloads
+            };
+            folderPicker.FileTypeFilter.Add("*");
+
+            StorageFolder pickedFolder = await folderPicker.PickSingleFolderAsync();
+
+            if (pickedFolder != null)
+            {
+                await DownloadAndInstallFromZipAsync(zipFileUrl, pickedFolder);
+            }
+            else
+            {
+                // User canceled the folder picking
+                await new MessageDialog("Operation canceled", "No folder selected for download.").ShowAsync();
+            }
+
+            DownloadProgressBar.Visibility = Visibility.Collapsed;
+            InstallMOS.IsEnabled = true;
+            InstallMOS.IsEnabled = true; // Re-enable button after installation
+        }
+
+        private async Task DownloadAndInstallFromZipAsync(string url, StorageFolder destinationFolder)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Save the package to the selected location
+                        StorageFile tempFile = await destinationFolder.CreateFileAsync("InstallUpdate.zip", CreationCollisionOption.ReplaceExisting);
+
+                        using (var fileStream = await tempFile.OpenStreamForWriteAsync())
+                        using (var contentStream = await response.Content.ReadAsStreamAsync())
+                        {
+                            long totalBytes = response.Content.Headers.ContentLength ?? 0;
+                            long totalBytesRead = 0;
+                            byte[] buffer = new byte[8192];
+                            int bytesRead;
+
+                            while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                            {
+                                await fileStream.WriteAsync(buffer, 0, bytesRead);
+                                totalBytesRead += bytesRead;
+
+                                if (totalBytes > 0)
+                                {
+                                    double progress = (double)totalBytesRead / totalBytes * 100;
+                                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                    {
+                                        DownloadProgressBar.Value = progress;
+                                    });
+                                }
+                            }
+                        }
+
+                        // Extract and install packages
+                        await ExtractAndInstallPackagesAsync(tempFile, destinationFolder);
+                    }
+                    else
+                    {
+                        await new MessageDialog("Download failed", "Please check the URL or your internet connection.").ShowAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await new MessageDialog("An error occurred", "Please check your internet connection.").ShowAsync();
             }
         }
     }

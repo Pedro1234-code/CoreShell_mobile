@@ -3,19 +3,18 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp rescap">
+  IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="78802a9b-ed2b-4fab-9087-538d29dfc1e1"
-    Publisher="CN=70CF1695-06B3-4B57-8DCD-3788C28AED2F"
-    Version="1.0.18.0" />
+    Name="5e2fdc4d-b409-478f-8213-9d239a499681"
+    Publisher="CN=User"
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="78802a9b-ed2b-4fab-9087-538d29dfc1e1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="5e2fdc4d-b409-478f-8213-9d239a499681" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MobileOS Updater</DisplayName>
+    <DisplayName>Xbox_PWA</DisplayName>
     <PublisherDisplayName>User</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -31,14 +30,14 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="MobileOS_Update.App">
+      EntryPoint="Xbox_PWA.App">
       <uap:VisualElements
-        DisplayName="MobileOS Updater"
+        DisplayName="Xbox_PWA"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Update application for Windows MobileOS."
+        Description="Xbox_PWA"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
@@ -46,9 +45,5 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
-    <uap:Capability Name="documentsLibrary" />
-    <rescap:Capability Name="packageQuery" />
-    <rescap:Capability Name="broadFileSystemAccess" />
-    <rescap:Capability Name="packageManagement" />
   </Capabilities>
 </Package>

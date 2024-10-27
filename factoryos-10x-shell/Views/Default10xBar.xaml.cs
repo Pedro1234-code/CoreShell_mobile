@@ -34,6 +34,7 @@ namespace factoryos_10x_shell.Views
             AppState.Instance.OnSearchButtonVisibilityChanged += UpdateSearchButtonVisibility;
             AppState.Instance.OnCopilotButtonVisibilityChanged += UpdateCopilotButtonVisibility; UpdateSearchButtonVisibility(AppState.Instance.IsSearchButtonVisible);
 
+
             UpdateSearchButtonVisibility(AppState.Instance.IsSearchButtonVisible);
             UpdateCopilotButtonVisibility(AppState.Instance.IsCopilotButtonVisible);
         }
@@ -50,6 +51,8 @@ namespace factoryos_10x_shell.Views
         {
 
         }
+
+
 
         private void UpdateSearchButtonVisibility(bool isVisible)
         {
