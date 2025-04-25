@@ -41,6 +41,16 @@
                 Content="Install MobileOS base package"
                 FontSize="20" />
 
+            <TextBlock />
+            <Button
+                x:Name="UpdateCert"
+                Width="413"
+                Height="40"
+                Click="UpdateCert_Click"
+                Content="Update certificate"
+                FontSize="20" />
+
+
         </StackPanel>
 
         <TextBlock

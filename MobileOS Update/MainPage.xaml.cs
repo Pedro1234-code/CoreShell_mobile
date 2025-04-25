@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -17,7 +18,7 @@ namespace MobileOS_Update
 {
     public sealed partial class MainPage : Page
     {
-        private const string CurrentVersion = "20843"; 
+        private const string CurrentVersion = "20844"; 
         private const string VersionFileUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/version.txt"; // URL to the version file
         private const string PackageUrl = "https://github.com/Pedro1234-code/MOS_updatefiles/releases/download/static/latest.zip"; // URL to the update package
 
@@ -44,9 +45,14 @@ namespace MobileOS_Update
                         // Server version is higher, proceed with download
                         DownloadProgressBar.Visibility = Visibility.Visible;
                         UpdateVerify.Visibility = Visibility.Collapsed;
+                        UpdateCert.Visibility = Visibility.Collapsed;
+                        InstallMOS.Visibility = Visibility.Collapsed;
                         await DownloadAndSaveUpdateAsync();
                         DownloadProgressBar.Visibility = Visibility.Collapsed;
                         UpdateVerify.Visibility = Visibility.Visible;
+                        UpdateCert.Visibility = Visibility.Visible;
+                        InstallMOS.Visibility = Visibility.Visible;
+
                     }
                     else
                     {
@@ -62,6 +68,12 @@ namespace MobileOS_Update
             {
 
             }
+        }
+
+        private async void UpdateCert_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("updatecert:"));
+            await new MessageDialog("Updated certs", "MobileOS Certificates have been updated").ShowAsync();
         }
 
         private async Task DownloadAndSaveUpdateAsync()
