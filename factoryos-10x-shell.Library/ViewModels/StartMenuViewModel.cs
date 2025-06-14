@@ -58,6 +58,8 @@ namespace factoryos_10x_shell.Library.ViewModels
             }
         }
 
+
+
         [RelayCommand]
         public void TextBoxSearchClicked()
         {

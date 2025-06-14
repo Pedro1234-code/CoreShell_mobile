@@ -40,11 +40,15 @@ namespace factoryos_10x_shell.Views
 {
     public sealed partial class StartMenu : Page
     {
+
+        private readonly IAppHelper appHelper;
+
         public StartMenu()
         {
             this.InitializeComponent();
-
+            appHelper = App.ServiceProvider.GetRequiredService<IAppHelper>();
             DataContext = App.ServiceProvider.GetRequiredService<StartMenuViewModel>();
+
         }
 
         public StartMenuViewModel ViewModel => (StartMenuViewModel)this.DataContext;
@@ -83,6 +87,20 @@ namespace factoryos_10x_shell.Views
                 // launch app
                 await (model.Data as AppListEntry).LaunchAsync();
 
+            }
+        }
+
+        private void PinToTaskbar_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuFlyoutItem item &&
+                item.DataContext is StartIconModel app)
+            {
+                if (!appHelper.TaskbarIcons.Any(i => i.AppId == app.AppId))
+                {
+                    appHelper.TaskbarIcons.Add(app);
+                    appHelper.SaveTaskbarPinnedApps(appHelper.TaskbarIcons.ToList());
+                    Debug.WriteLine($"Salvando: AppId={app.AppId} / Aumid={app.Aumid ?? "NULL"} / Nome={app.IconName}");
+                }
             }
         }
 

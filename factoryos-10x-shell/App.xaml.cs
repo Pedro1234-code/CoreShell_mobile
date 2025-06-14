@@ -28,6 +28,7 @@ using Windows.Storage.Streams;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using factoryos_10x_shell.Services.Helpers;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -37,13 +38,13 @@ using Windows.ApplicationModel.Background;
 using Windows.Storage;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
-using factoryos_10x_shell.Services.Helpers;
 
 namespace factoryos_10x_shell
 {
     sealed partial class App : Application
     {
         public static MediaPlayer MediaPlayer;
+
 
         [Obsolete]
         public App()
@@ -59,6 +60,7 @@ namespace factoryos_10x_shell
             {
                 AppState.Instance.IsCopilotButtonVisible = (bool)Windows.Storage.ApplicationData.Current.LocalSettings.Values["IsCopilotButtonVisible"];
             }
+
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
@@ -95,10 +97,28 @@ namespace factoryos_10x_shell
                 Window.Current.Activate();
             }
 
+            Application.Current.UnhandledException += async (sender, e) =>
+            {
+                e.Handled = true;
+
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                    Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        Frame rootFrame = Window.Current.Content as Frame;
+                        rootFrame.Navigate(typeof(Views.FallbackErrorPage), e.Exception);
+                    });
+            };
+
+
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             var view = ApplicationView.GetForCurrentView();
             view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
+
+
+
         }
+
+
 
         protected override async void OnActivated(IActivatedEventArgs args)
         {

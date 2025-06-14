@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="factoryos_10x_shell.Views.FallbackErrorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:factoryos_10x_shell.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel Padding="20" Spacing="12">
+            <TextBlock Text="⚠ Ocorreu um erro não tratado" FontSize="22" FontWeight="Bold" Foreground="Red"/>
+            <TextBlock x:Name="ExceptionMessage" TextWrapping="WrapWholeWords"/>
+            <TextBlock x:Name="StackTrace" FontFamily="Consolas" FontSize="12" TextWrapping="WrapWholeWords"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

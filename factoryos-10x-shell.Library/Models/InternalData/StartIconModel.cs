@@ -12,6 +12,9 @@ namespace factoryos_10x_shell.Library.Models.InternalData
     public class StartIconModel : INotifyPropertyChanged
     {
         private string _iconName;
+        public string AppUri { get; set; }
+
+
         public string IconName
         {
             get { return _iconName; }
@@ -24,6 +27,10 @@ namespace factoryos_10x_shell.Library.Models.InternalData
                 }
             }
         }
+
+        public string Name {  get; set; } 
+
+        public string Aumid { get; set; }
 
         private BitmapImage _iconSource;
         public BitmapImage IconSource

@@ -137,7 +137,13 @@
                                         Width="90"
                                         Height="90"
                                         Click="AppButton_Click"
-                                        Style="{StaticResource AppIconBackgroundStyle}" />
+                                        Style="{StaticResource AppIconBackgroundStyle}">
+                                        <Button.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem Click="PinToTaskbar_Click" Text="Pin to taskbar" />
+                                            </MenuFlyout>
+                                        </Button.ContextFlyout>
+                                    </Button>
                                     <StackPanel
                                         Width="90"
                                         Height="90"

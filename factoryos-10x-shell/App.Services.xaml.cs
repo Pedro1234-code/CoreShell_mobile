@@ -36,7 +36,8 @@ namespace factoryos_10x_shell
         {
             IServiceCollection collection = new ServiceCollection()
                 .AddSingleton<ITimeService, TimeService>()
-                .AddSingleton<IAppHelper, AppHelper>()
+.AddSingleton<AppHelper>()
+.AddSingleton<IAppHelper>(provider => provider.GetRequiredService<AppHelper>())
                 .AddSingleton<IDispatcherService, DispatcherService>()
                 .AddSingleton<IBatteryService, BatteryService>()
                 .AddSingleton<INetworkService, NetworkService>()

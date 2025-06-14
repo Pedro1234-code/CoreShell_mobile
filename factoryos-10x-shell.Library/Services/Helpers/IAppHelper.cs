@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.Management.Deployment;
 
 namespace factoryos_10x_shell.Library.Services.Helpers
@@ -16,10 +17,16 @@ namespace factoryos_10x_shell.Library.Services.Helpers
     /// </summary>
     public interface IAppHelper
     {
-        public ObservableCollection<StartIconModel> StartIcons { get; set; }
+        ObservableCollection<StartIconModel> StartIcons { get; set; }
+        ObservableCollection<StartIconModel> TaskbarIcons { get; set; }
+        Task LoadAppsAsync();
 
-        public Task LoadAppsAsync();
+        // void SaveTaskbarPinnedApps(List<AppInfo> apps);
 
-        public Package PackageFromAumid(string aumid);
+        void SaveTaskbarPinnedApps(List<StartIconModel> startIconModels);
+
+        Package PackageFromAumid(string aumid);
+        Task<AppListEntry> GetAppListEntryFromAumidAsync(string aumid);
+        Task<AppListEntry> GetAppListEntryFromModelAsync(StartIconModel model);
     }
 }

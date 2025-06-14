@@ -136,6 +136,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BoolToPinUnpinConverter.cs" />
     <Compile Include="Controls\ActionCenterSegmentedToggle.xaml.cs">
       <DependentUpon>ActionCenterSegmentedToggle.xaml</DependentUpon>
     </Compile>
@@ -146,6 +147,9 @@
     <Compile Include="Services\Helpers\AppState.cs" />
     <Compile Include="Services\Managers\ActionCenterManagerService.cs" />
     <Compile Include="Services\Managers\NotificationManager.cs" />
+    <Compile Include="Views\FallbackErrorPage.xaml.cs">
+      <DependentUpon>FallbackErrorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -283,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FallbackErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -329,6 +337,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

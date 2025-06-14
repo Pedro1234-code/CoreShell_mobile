@@ -66,6 +66,8 @@
 
 
 
+
+
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <Button
                 x:Name="SearchButton"
@@ -195,6 +197,13 @@
                         Stretch="Uniform" />
                 </Button.Content>
             </Button>
+
+            <StackPanel
+                x:Name="PinnedAppsPanel"
+                Margin="70,0,0,0"
+                VerticalAlignment="Center"
+                Orientation="Horizontal" />
+
 
         </StackPanel>
         <StackPanel
